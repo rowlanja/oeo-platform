@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Web3 from 'web3';
-import { address, abi } from "../contracts/coin";
-import { storage_abi, storage_address } from "../contracts/storage";
+import { address, abi } from "./src/contracts/coin";
+import { storage_abi, storage_address } from "./src/contracts/storage";
 import detectEthereumProvider from '@metamask/detect-provider'
 
 
