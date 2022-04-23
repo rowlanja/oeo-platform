@@ -1,7 +1,7 @@
 pragma solidity ^0.8.0;
 
-import "Controller_OeoDao.sol";
-import "VotingToken_OeoDao.sol";
+import "./Controller_OeoDao.sol";
+import "./VotingToken_OeoDao.sol";
 
 contract Governance is Controller {
 
