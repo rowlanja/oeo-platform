@@ -1,5 +1,5 @@
-# Dao platform in construction
-
+# Avalanche Dao platform in construction
+DAO, ICO, Collectible platform being built on the Avalanche blockchain
 Bootrstrapped web3 react app 
 
 ## Available Scripts
