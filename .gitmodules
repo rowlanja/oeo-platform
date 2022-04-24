@@ -1,0 +1,3 @@
+[submodule "oeo-contracts"]
+	path = oeo-contracts
+	url = https://github.com/rowlanja/oeo-contracts
