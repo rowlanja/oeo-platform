@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import { ethers } from "ethers";
-import "./App.css";
-import { Button, Card } from "react-bootstrap";
-import Minter from "./components/minter"
+import React from "react";
 import Account from "./components/account"
+import DaoMinter from "./components/dao_minter"
 function App() {
   
   
   return (
 
     <div className="App">
-     <Account/>
-     <Minter/>
+    <Account/>
+    {/* <Minter/> */}
+     <DaoMinter/>
     </div>
   );
 }

@@ -69,7 +69,7 @@ export default function Minter() {
   useEffect(() => {
     // Web3.js initiate
     async function load() {
-      const web3 = new Web3(Web3.givenProvider || ' https://api.avax-test.network/ext/bc/C/rpc');
+      const web3 = new Web3(Web3.givenProvider || 'https://api.avax-test.network/ext/bc/C/rpc');
       /// const web3 = new Web3(Web3.givenProvider || 'https://ropsten.infura.io/v3/e5f6b05589544b1bb8526dc3c034c63e');
       // const web3 = new Web3(Web3.givenProvider || 'https://rinkeby.infura.io/v3/11d2dfe1e20648a7a459f4ef5e57aa2f');
       const accounts = await web3.eth.requestAccounts();
