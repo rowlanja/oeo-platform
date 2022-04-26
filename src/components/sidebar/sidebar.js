@@ -1,16 +1,15 @@
 import React from 'react';
-import { Nav, Navbar, NavDropdown, FormControl, Form, Offcanvas, Container, Button } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap';
+import { Nav, Navbar, Offcanvas, Container } from 'react-bootstrap'
 import {
     BrowserRouter as Router,
     Routes,
     Route,
-    useParams,
   } from "react-router-dom";
 
 import Dao from "../../pages/dao";
 import Home from "../../pages/home";
 import Wallet from "../../pages/wallet";
+import Staking from "../../pages/staking";
 
 export default function NavType() {
 
@@ -18,51 +17,34 @@ export default function NavType() {
     return (
         <Router>
         <Navbar bg="light" expand={false}>
-        <Container fluid>
-            <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
-            <Navbar.Toggle aria-controls="offcanvasNavbar" />
-            <Navbar.Offcanvas
-            id="offcanvasNavbar"
-            aria-labelledby="offcanvasNavbarLabel"
-            placement="end"
-            >
-            <Offcanvas.Header closeButton>
-                <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/dao">Dao</Nav.Link>
-                <Nav.Link href="/wallet">Wallet</Nav.Link>
-                <Nav.Link href="/staking">Staking</Nav.Link>
-
-                {/* <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
-                    Something else here
-                </NavDropdown.Item> */}
-                {/* </NavDropdown> */}
-                </Nav>
-                <Form className="d-flex">
-                <FormControl
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                />
-                <Button variant="outline-success">Search</Button>
-                </Form>
-            </Offcanvas.Body>
-            </Navbar.Offcanvas>
-        </Container>
+            <Container fluid>
+                <Navbar.Brand href="#">OneEyeOpen</Navbar.Brand>
+                <Navbar.Toggle aria-controls="offcanvasNavbar" />
+                <Navbar.Offcanvas
+                id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel"
+                placement="end"
+                >
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <Nav className="justify-content-end flex-grow-1 pe-3">
+                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="/dao">Dao</Nav.Link>
+                        <Nav.Link href="/wallet">Wallet</Nav.Link>
+                        <Nav.Link href="/staking">Staking</Nav.Link>
+                    </Nav>
+                </Offcanvas.Body>
+                </Navbar.Offcanvas>
+            </Container>
         </Navbar>
-        <Routes>
-            <Route path="/" element={<Home />}/>
-            <Route path="/dao" element={<Dao/>}/>
-            <Route path="/wallet" element={<Wallet/>} />            
-        </Routes>
+            <Routes>
+                <Route path="/" element={<Home />}/>
+                <Route path="/dao" element={<Dao/>}/>
+                <Route path="/wallet" element={<Wallet/>} />
+                <Route path="/staking" element={<Staking/>} />            
+            </Routes>
         </Router>
     );
 }

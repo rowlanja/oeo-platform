@@ -16,17 +16,9 @@ export default function DaoMinter() {
 
   const [tokenContract, setTokenContract] = useState(); // storage that the contract made
   const [governorContract, setGovernorContract] = useState(); // storage that the contract made
-  const [treasurerContract, setTreasurerContract] = useState(); // storage that the contract made
 
-  const [earn, setEarn] = useState();
-  const [evb, setEvb] = useState();
-  const [value, setValue] = useState(); // The value that stored in the Storage
   const [num, setNum] = useState(); // Inputed value
-  const [name2, setNameValue, proposals] = useState()
 
-  const  requestAccount = async () => {
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
-  }
 
 
   //----- Custom Functions -----
@@ -53,26 +45,11 @@ export default function DaoMinter() {
     await tokenContract.methods.mint("0xCaCb6865142B31dEe0d85456dC030F8B6580B541", 150).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
   }
 
-  // call the smart contract, read current proposals
-  const fetchProposals = async () => {
-    if (typeof window.ethereum !== 'undefined') {
-      const provider = new ethers.providers.Web3Provider(window.ethereum)
-      const contract = new ethers.Contract(governance_address, governance_abi, provider)
-      try {
-        const data = await contract.greet()
-        console.log('data: ', data)
-      } catch (err) {
-        console.log("Error: ", err)
-      }
-    }    
-  }
 
   const postProposal = async () => {
-    const descriptionHash = ethers.utils.id("funding account 2");
 
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const signer = provider.getSigner();
-    const governor = new ethers.Contract(governance_address, governance_abi, signer)
     const token = new ethers.Contract(token_address, token_abi, signer);
 
     const teamAddress = '0x90800f3Ac6957347c3f4BeC95Fd1CCccb1Cf91bE';
@@ -98,8 +75,6 @@ export default function DaoMinter() {
     // Web3.js initiate
     async function load() {
       const web3 = new Web3(Web3.givenProvider || ' https://api.avax-test.network/ext/bc/C/rpc');
-      /// const web3 = new Web3(Web3.givenProvider || 'https://ropsten.infura.io/v3/e5f6b05589544b1bb8526dc3c034c63e');
-      // const web3 = new Web3(Web3.givenProvider || 'https://rinkeby.infura.io/v3/11d2dfe1e20648a7a459f4ef5e57aa2f');
       const accounts = await web3.eth.requestAccounts();
       setAccount(accounts[0]);
       // Instantiate smart contracts using ABI and address.

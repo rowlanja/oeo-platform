@@ -1,82 +1,65 @@
 import React, { useState } from "react";
 import { ethers } from "ethers";
-import { Card } from "react-bootstrap";
 import {
   VStack,
-  useDisclosure,
   Button,
   Text,
   HStack,
-  Select,
-  Input,
-  Box
+  Box,
+  Heading,
+  Stack
 } from "@chakra-ui/react";
 import { CheckCircleIcon, WarningIcon } from "@chakra-ui/icons";
-import { Tooltip } from "@chakra-ui/react";
+
 export default function Wallet() {
   
-  // usetstate for storing and retrieving wallet details
   const [data, setdata] = useState({
     address: null,
     Balance: null,
   });
-  const [signature, setSignature] = useState("");
-  const [error, setError] = useState("");
-  const [network, setNetwork] = useState(undefined);
-  const [message, setMessage] = useState("");
-  const [signedMessage, setSignedMessage] = useState("");
-  const [verified, setVerified] = useState();
+
   const [active, setActive] = useState(false);
   
-  // Button handler button for handling a
-  // request event for metamask
   const btnhandler = () => {
-  
-    // Asking if metamask is already present or not
     if (window.ethereum) {
-  
-      // res[0] for fetching a first wallet
       window.ethereum
         .request({ method: "eth_requestAccounts" })
         .then((res) => accountChangeHandler(res[0]));
     } else {
       alert("install metamask extension!!");
     }
+    setActive(true)
   };
-  
-  // getbalance function for getting a balance in
-  // a right format with help of ethers
+
   const getbalance = (address) => {
-  
-    // Requesting balance method
     window.ethereum
-      .request({ 
-        method: "eth_getBalance", 
-        params: [address, "latest"] 
+      .request({
+        method: "eth_getBalance",
+        params: [address, "latest"]
       })
       .then((balance) => {
-        // Setting balance
+        console.log(balance, ethers.utils.formatEther(balance))
         setdata({
           address: address,
           Balance: ethers.utils.formatEther(balance),
         });
       });
   };
-  
-  // Function for getting handling all events
-  const accountChangeHandler = (account) => {
-    console.log(account)
 
-    // Setting a balance
-    getbalance(account);
-  };
-  
+  const accountChangeHandler = (account) => {getbalance(account);};
+
+  function Feature({ title, desc, ...rest }) {
+    return (
+      <Box p={5} shadow='md' borderWidth='1px' {...rest}>
+        <Heading fontSize='xl'>{title}</Heading>
+        <Text mt={4}>{desc}</Text>
+      </Box>
+    )
+  }
+
   return (
 
     <div className="App">
-      {/* Calling all values which we 
-       have stored in usestate */}
-
       <VStack justifyContent="center" alignItems="center" h="100vh">
         <HStack marginBottom="10px">
           <Text
@@ -85,7 +68,7 @@ export default function Wallet() {
             fontSize={["1.5em", "2em", "3em", "4em"]}
             fontWeight="600"
           >
-            Let's connect with
+            Let's connect to 
           </Text>
           <Text
             margin="0"
@@ -93,17 +76,18 @@ export default function Wallet() {
             fontSize={["1.5em", "2em", "3em", "4em"]}
             fontWeight="600"
             sx={{
-              background: "linear-gradient(90deg, #1652f0 0%, #b9cbfb 70.35%)",
+              background: "linear-gradient(90deg, #F67C06 0%, #743E0A 70.35%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent"
             }}
+            color='tomato'
           >
-            Web3-React
+            MetaMask
           </Text>
         </HStack>
         <HStack>
 
-        <Button onClick={btnhandler} variant="primary">Connect to wallet</Button>
+          <Button onClick={btnhandler} variant="primary">Connect to wallet</Button>
 
         </HStack>
         <VStack justifyContent="center" alignItems="center" padding="10px 0">
@@ -115,27 +99,20 @@ export default function Wallet() {
               <WarningIcon color="#cd5700" />
             )}
           </HStack>
-          </VStack>
-          </VStack>
-      <Card className="text-center">
-        <Card.Header>
-          <strong>Address: </strong>
-          {data.address}
-        </Card.Header>
-        <Card.Body>
-          <Card.Text>
-            <strong>Balance: </strong>
-            {data.Balance}
-          </Card.Text>
-          <Button onClick={btnhandler} variant="primary">
-            Connect to wallet
-          </Button>
+        </VStack>
+      </VStack>
 
-          <Button onClick={btnhandler} variant="primary">
-            Interact with contract address
-          </Button>
-        </Card.Body>
-      </Card>
+      <Stack spacing={8} direction='row'>
+        <Feature
+          title='Address'
+          desc={data.address}
+        />
+        <Feature
+          title='Balance'
+          desc={data.Balance}
+        />
+      </Stack>
+
     </div>
   );
 }
