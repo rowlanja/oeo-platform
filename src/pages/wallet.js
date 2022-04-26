@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { CheckCircleIcon, WarningIcon } from "@chakra-ui/icons";
 import { Tooltip } from "@chakra-ui/react";
-export default function Account() {
+export default function Wallet() {
   
   // usetstate for storing and retrieving wallet details
   const [data, setdata] = useState({

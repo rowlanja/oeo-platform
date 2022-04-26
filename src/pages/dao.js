@@ -5,7 +5,7 @@ import { governance_abi, governance_address } from "../contracts/Governance";
 import { storage_abi, storage_address } from "../contracts/storage";
 import { token_address, token_abi } from "../contracts/VotingToken";
 import { treasurer_address, treasurer_abi } from "../contracts/Treasurer";
-export default function DaoMinter() {
+export default function Dao() {
   
   //----- Internal States -----
   const [name, setName] = useState(); // My account

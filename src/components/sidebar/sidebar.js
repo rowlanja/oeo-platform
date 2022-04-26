@@ -1,10 +1,22 @@
 import React from 'react';
 import { Nav, Navbar, NavDropdown, FormControl, Form, Offcanvas, Container, Button } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    useParams,
+  } from "react-router-dom";
+
+import Dao from "../../pages/dao";
+import Home from "../../pages/home";
+import Wallet from "../../pages/wallet";
 
 export default function NavType() {
 
 
     return (
+        <Router>
         <Navbar bg="light" expand={false}>
         <Container fluid>
             <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
@@ -19,16 +31,19 @@ export default function NavType() {
             </Offcanvas.Header>
             <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href="#action1">Home</Nav.Link>
-                <Nav.Link href="#action2">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/dao">Dao</Nav.Link>
+                <Nav.Link href="/wallet">Wallet</Nav.Link>
+                <Nav.Link href="/staking">Staking</Nav.Link>
+
+                {/* <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
+                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action5">
                     Something else here
-                    </NavDropdown.Item>
-                </NavDropdown>
+                </NavDropdown.Item> */}
+                {/* </NavDropdown> */}
                 </Nav>
                 <Form className="d-flex">
                 <FormControl
@@ -43,5 +58,11 @@ export default function NavType() {
             </Navbar.Offcanvas>
         </Container>
         </Navbar>
+        <Routes>
+            <Route path="/" element={<Home />}/>
+            <Route path="/dao" element={<Dao/>}/>
+            <Route path="/wallet" element={<Wallet/>} />            
+        </Routes>
+        </Router>
     );
 }
