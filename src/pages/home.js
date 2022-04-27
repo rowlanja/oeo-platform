@@ -20,6 +20,8 @@ import {
   FiTrendingUp,
   FiArrowRight,
   FiUserPlus,
+  FiTwitter, 
+  FiGithub,
 } from 'react-icons/fi'
 // import { FormDialog } from '@chakra-ui/react'
 import { Field } from '@saas-ui/forms'
@@ -75,7 +77,7 @@ import { Em, Br } from '../components/typography'
 import { FallInPlace } from '../components/motion/fall-in-place'
 
 import { ButtonLink } from '../components/link'
-// import  { BackgroundGradient }  from '../components/background-gradient'
+import OneEyeOpenLogo from "../components/logos/Logo.png";
 import { ReactLogo } from '../components/logos/react'
 import { ChakraLogo } from '../components/logos/chakra'
 
@@ -288,7 +290,9 @@ return (
 const BoilerplateCode = () => {
 const { isOpen, onOpen, onClose } = useDisclosure()
 const fieldRef = React.useRef()
-
+function example() {
+    console.log('testing')
+}
 return (
     <Section innerWidth="container.xl">
     <Stack spacing="12" direction={['column', null, 'row']}>
@@ -299,21 +303,12 @@ return (
             mb="8"
             fontWeight="extrabold"
         >
-            Less boilerplate
-            build with speed.
+            Safety through Diversification.
         </Heading>
         <VStack spacing="4" alignItems="flex-start">
             <Text fontSize={['xl', null, '2xl']} color="muted">
-            Saas UI ships with an extensive set of foundational and advanced
-            components that cover a wide range of use-cases. Carefully crafted
-            to reduce boilerplate code without sacrificing flexibility.
+            Through automated staking and investing across a number of diverse crypro assets we increase safety aswell potential returns. 
             </Text>
-            <Text fontSize="md" color="muted">
-            Try it out:
-            </Text>
-            <Button onClick={onOpen} variant="subtle" colorScheme="purple">
-            Create project
-            </Button>
         </VStack>
 
         {/* <FormDialog
@@ -358,14 +353,11 @@ return (
     <Section innerWidth="container.xl">
     <Box py="10" flex="1" width={['full', null, '50%']}>
         <Heading size="2xl" mb="8" fontWeight="extrabold">
-        Make it yours.
+        Leverage Your Power.
         </Heading>
         <VStack spacing="4" alignItems="flex-start">
         <Text fontSize={['xl', null, '2xl']} color="muted">
-            Saas UI is build on top of <Em>Chakra UI</Em>, all components are
-            build with the same excellent design principles. Effortlessly
-            compose and customize components directly through CSS-in-JS style
-            props or by creating a custom theme.
+            Through the OneEyeOpen Dao you can leverage your investment automatically for a say in new services, operations or decisions made on across the OneEyeOpen platform.
         </Text>
         </VStack>
     </Box>
@@ -481,12 +473,10 @@ return (
         position="relative"
     >
         <GridItem colSpan={[1, null, 2]} as={HighlightBox}>
-        <Heading fontSize="1.4em">Core components</Heading>
+        <Heading fontSize="1.4em">The Proof is in the Pudding</Heading>
         <Text color="muted" fontSize="xl">
-            Get started for free with <Em>30+ open source components</Em>.
-            Including authentication screens with Clerk, Supabase and Magic.
-            Fully functional forms with React Hook Form. Data tables with React
-            Table.
+            Claims are useless. Actual proof is what users deserve before choosing OneEyeOpen as their platform. For a deeper
+            dive on the powerful fundamentals that drive our platform click below! 
         </Text>
         <Button
             colorScheme="black"
@@ -495,12 +485,12 @@ return (
             href="/docs/introduction"
             rightIcon={<FiArrowRight />}
         >
-            Read documentation
+            Read fundamentals
         </Button>
         <HStack spacing="12">
             <HStack
             py="1"
-            px="2"
+            px="1"
             borderRadius="full"
             bg="codeBackground"
             borderWidth="1px"
@@ -521,14 +511,13 @@ return (
         <Heading fontSize="1.4em">Solid foundations</Heading>
         <Text color="muted" fontSize="lg">
             We don&apos;t like to re-invent the wheel, neither should you. We
-            selected the most productive and established tools in the scene and
-            build Saas UI on top of it.  
+            selected the most productive and established tools in the cryptography and finance
+            scene to build our platform.  
             
-            Including Chakra UI, React Hook Form, React Table, React Query,
-            Recharts, and more...
         </Text>
         </GridItem>
         <GridItem
+        
         as={HighlightBox}
         bgGradient={`linear(to-r, ${transparentize(
             'purple.500',
@@ -536,6 +525,9 @@ return (
         )(theme)}, ${transparentize('cyan.500', 0.3)(theme)})`}
         justifyContent="center"
         >
+        <Heading fontSize="1.4em">
+            Active Team & Community
+        </Heading>
         <Card
             avatar={
             <Avatar name="Tien Tienth" src="/testimonials/turbothinh.png" />
@@ -556,6 +548,24 @@ return (
             structure that I think can scale 😄
             </CardBody>
         </Card>
+        <Button
+            colorScheme="black"
+            variant="link"
+            as={Link}
+            href="/docs/introduction"
+            rightIcon={<FiTwitter />}
+        >
+            Check Twitter
+        </Button>
+        <Button
+            colorScheme="black"
+            variant="link"
+            as={Link}
+            href="/docs/introduction"
+            rightIcon={<FiGithub />}
+        >
+            Check Github
+        </Button>
         </GridItem>
         <GridItem colSpan={[1, null, 2]} as={HighlightBox}>
         <Heading fontSize="1.4em">
@@ -610,22 +620,21 @@ return (
                 px="0"
                 title={
                     <FallInPlace>
-                    Build beautiful
-                        software faster
+                    OneEyeOpen Console for all
                     </FallInPlace>
                 }
                 description={
                     <FallInPlace delay={0.4} fontWeight="medium">
-                    Saas UI is an <Em>advanced component library</Em>
-                        that helps you build essential Software-as-a-Service
-                        
-                    functionality in hours instead of weeks.
+                    Advanced console for Index ICO launches, Index NFT funds & Index staking platform
                     </FallInPlace>
                 }
                 >
                 <FallInPlace delay={0.8}>
                     <HStack pt="4" pb="12" spacing="8">
-                    <ReactLogo height="28px" /> <ChakraLogo height="20px" />
+                    <FallInPlace delay={1}>
+                        <img  width={250} height={250} src={OneEyeOpenLogo}/>
+                    </FallInPlace>
+
                     </HStack>
 
                     <ButtonGroup
@@ -666,14 +675,7 @@ return (
                 maxW="1100px"
                 margin="0 auto"
                 >
-                <FallInPlace delay={1}>
-                    <Img
-                    src="/app.png"
-                    position="absolute"
-                    width="100%"
-                    top="0"
-                    />
-                </FallInPlace>
+
                 </Box>
             </Stack>
             </Container>
@@ -688,15 +690,15 @@ return (
                 title: 'Accessible',
                 icon: FiSmile,
                 description:
-                    'All components strictly follow WAI-ARIA standards.',
+                    'Full Index protocols accesible through Phone and Web console ',
                 iconPosition: 'left',
                 delay: 0.6,
                 },
                 {
-                title: 'Themable',
+                title: 'Intuitive',
                 icon: FiSliders,
                 description:
-                    'Fully customize all components to your brand with theme support and style props.',
+                    'Cryptocurrency Finance products that are accessible and make sense',
                 iconPosition: 'left',
                 delay: 0.8,
                 },
@@ -704,7 +706,7 @@ return (
                 title: 'Composable',
                 icon: FiGrid,
                 description:
-                    'Compose components to fit your needs and mix them together to create new ones.',
+                    'Compose and interact with products that to fit your needs',
                 iconPosition: 'left',
                 delay: 1,
                 },
@@ -712,7 +714,7 @@ return (
                 title: 'Productive',
                 icon: FiThumbsUp,
                 description:
-                    'Designed to reduce boilerplate and fully typed, build your product at speed.',
+                    'Iteratively compounding your funds in a safe and aduitable manner',
                 iconPosition: 'left',
                 delay: 1.1,
                 },
