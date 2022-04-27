@@ -75,11 +75,21 @@ import SectionTitle from '../components/marketing/section-title'
 import SignupForm from '../components/signup-form/index'
 import { Em, Br } from '../components/typography'
 import { FallInPlace } from '../components/motion/fall-in-place'
-
 import { ButtonLink } from '../components/link'
 import OneEyeOpenLogo from "../components/logos/Logo.png";
-import { ReactLogo } from '../components/logos/react'
-import { ChakraLogo } from '../components/logos/chakra'
+
+// import { usePalette } from '@/providers/palette'
+// const [{ colors: palette, color: base, options }, setPalette] = usePalette()
+
+// const updatePalette = useMemo(
+//     () =>
+//       debounce((color, options) => {
+//         if (color.match(/#[0-9a-fA-F]{6}/)) {
+//           setPalette(color, options)
+//         }
+//       }, 200),
+//     [setPalette]
+// )
 
 const Pricing = () => {
     return (
@@ -569,14 +579,14 @@ return (
         </GridItem>
         <GridItem colSpan={[1, null, 2]} as={HighlightBox}>
         <Heading fontSize="1.4em">
-            Start your next idea two steps ahead
+            Safe Return Maximisation    
         </Heading>
         <Text color="muted" fontSize="lg">
-            There are a million things to think about when you start your SaaS.
-            We take care of all your basic frontend needs, so you can start
-            building functionality that makes your product unique.
+            There are millions of things to learn when trying to stake, invest or trade cryptocurrencies. 
+            OneEyeOpen platform takes the time and energy consuming nature out of cryptocurrencies by using
+            industry tested finance and cryptographic technologies.   
         </Text>
-        <Wrap>
+        {/* <Wrap>
             {[
             'authentication',
             'navigation',
@@ -599,7 +609,7 @@ return (
                 {value}
             </Tag>
             ))}
-        </Wrap>
+        </Wrap> */}
         </GridItem>
     </Grid>
     </Section>
@@ -732,7 +742,7 @@ return (
 
             <Highlights />
         </Box>
-
+{/* 
         <Section
             innerWidth={['100%', null, 'container.xl']}
             position="relative"
@@ -786,7 +796,7 @@ return (
                 </VStack>
             </Stack>
             </Box>
-        </Section>
+        </Section> */}
 
         <ProFeatures />
 
@@ -795,8 +805,7 @@ return (
             title="Plays well with others"
             description={
                 <>
-                Saas UI is backend agnostic and works with the framework
-                    or starter pack that you love.
+                OneEyeOpen platform is blockchain agnostic meaning it is deployed across all types of blockchains that you love.
                 </>
             }
             />
@@ -866,7 +875,7 @@ return (
             </Link>
             </SimpleGrid>
 
-            <Text
+            {/* <Text
             fontSize="sm"
             opacity="0.4"
             width={['100%', null, '50%']}
@@ -877,7 +886,7 @@ return (
             Typescript, Styled Components, Emotion, React Hook Form, React
             Query, Turborepo, Prettier, Storybook, Jest, Testing Library and
             more...
-            </Text>
+            </Text> */}
         </Section>
 
         <Pricing />
@@ -1084,24 +1093,27 @@ const ProFeatures = () => {
     <Features
         id="pro-features"
         title={
-        <Heading
-            lineHeight="short"
-            fontSize={['2xl', null, '4xl']}
-            textAlign="left"
-            as="p"
-        >
-            Not your standard
-            dashboard template.
-        </Heading>
+            <div>
+            <Heading
+                lineHeight="short"
+                fontSize={['2xl', null, '4xl']}
+                textAlign="left"
+                as="p"
+            >
+                OneEyeOpen provides Crypto 3.0 
+            </Heading>
+        </div>
         }
         description={
-        <Text fontSize={['xl', null, '2xl']}>
-            Saas UI Pro includes everything you need to build frontends that
-            scale.
-            
-            Use it as a template for your next product or foundation for your
-            design system.
-        </Text>
+            <div>
+                {/* <Text fontSize={['xl', null, '2xl']}>
+                    Saas UI Pro includes everything you need to build frontends that
+                    scale.
+                    
+                    Use it as a template for your next product or foundation for your
+                    design system.
+                </Text> */}
+            </div>
         }
         align="left"
         variant="alternate"
@@ -1112,68 +1124,42 @@ const ProFeatures = () => {
             title: 'Components.',
             icon: FiBox,
             description:
-            'All premium components are available on a private NPM registery, no more copy pasting and always up-to-date.',
+            'Modular cryptocurrency products',
             variant: 'inline',
         },
         {
-            title: 'Starterkits.',
+            title: 'Walk-Through.',
             icon: FiLock,
             description:
             'Example apps in Next.JS, Electron and Vite. Including authentication, billing, example pages, everything you need to get started FAST.',
             variant: 'inline',
         },
         {
-            title: 'Documentation.',
+            title: 'Tailorable.',
             icon: FiSearch,
             description:
-            'Extensively documented, including storybooks, best practices, use-cases and examples.',
+            'Extensively tailorable',
             variant: 'inline',
         },
         {
-            title: 'Onboarding.',
+            title: 'Community',
             icon: FiUserPlus,
             description:
-            'Add user onboarding flows, like tours, hints and inline documentation without breaking a sweat.',
+            'Be heard no matter how big or small is staked.',
             variant: 'inline',
         },
         {
-            title: 'Feature flags.',
+            title: 'Compounding',
             icon: FiFlag,
             description:
-            "Implement feature toggles for your billing plans with easy to use hooks. Connect Flagsmith, or other remote config services once you're ready.",
+            "Compounding investments and returns",
             variant: 'inline',
         },
         {
-            title: 'Upselling.',
+            title: 'Safety.',
             icon: FiTrendingUp,
             description:
-            'Components and hooks for upgrade flows designed to make upgrading inside your app frictionless.',
-            variant: 'inline',
-        },
-        {
-            title: 'Themes.',
-            icon: FiToggleLeft,
-            description:
-            'Includes multiple themes with darkmode support, always have the perfect starting point for your next project.',
-            variant: 'inline',
-        },
-        {
-            title: 'Generators.',
-            icon: FiTerminal,
-            description:
-            'Extend your design system while maintaininig code quality and consistency with build-in generators.',
-            variant: 'inline',
-        },
-        {
-            title: 'Monorepo.',
-            icon: FiCode,
-            description: (
-            <>
-                All code is available as packages in a high-performance{' '}
-                <Link href="https://turborepo.com">Turborepo</Link>, you have full
-                control to modify and adjust it to your workflow.
-            </>
-            ),
+            'Time Tested smart contract and finance integration',
             variant: 'inline',
         },
         ]}
