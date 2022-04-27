@@ -341,6 +341,7 @@ return (
         </FormDialog> */}
         </Box>
         <Box
+        color='orange.600'
         display="flex"
         flex="1"
         py="10"
@@ -653,7 +654,7 @@ return (
                     alignItems="center"
                     >
                     <Button
-                        colorScheme="primary"
+                        colorScheme="orange"
                         size="lg"
                         mb={[8, null, 0]}
                         onClick={() => {
@@ -677,58 +678,60 @@ return (
                 </FallInPlace>
                 </Hero>
                 <Box
-                height="600px"
-                position="absolute"
-                display={{ base: 'none', lg: 'block' }}
-                left={{ lg: '60%', xl: '55%' }}
-                width="80vw"
-                maxW="1100px"
-                margin="0 auto"
+                    height="600px"
+                    position="absolute"
+                    display={{ base: 'none', lg: 'block' }}
+                    left={{ lg: '60%', xl: '55%' }}
+                    width="80vw"
+                    maxW="1100px"
+                    margin="0 auto"
                 >
 
                 </Box>
             </Stack>
             </Container>
             <Features
-            id="benefits"
-            columns={[1, 2, 4]}
-            iconSize={4}
-            innerWidth="container.xl"
-            pt="20"
-            features={[
-                {
-                title: 'Accessible',
-                icon: FiSmile,
-                description:
-                    'Full Index protocols accesible through Phone and Web console ',
-                iconPosition: 'left',
-                delay: 0.6,
-                },
-                {
-                title: 'Intuitive',
-                icon: FiSliders,
-                description:
-                    'Cryptocurrency Finance products that are accessible and make sense',
-                iconPosition: 'left',
-                delay: 0.8,
-                },
-                {
-                title: 'Composable',
-                icon: FiGrid,
-                description:
-                    'Compose and interact with products that to fit your needs',
-                iconPosition: 'left',
-                delay: 1,
-                },
-                {
-                title: 'Productive',
-                icon: FiThumbsUp,
-                description:
-                    'Iteratively compounding your funds in a safe and aduitable manner',
-                iconPosition: 'left',
-                delay: 1.1,
-                },
-            ]}
+                colorScheme="orange"
+                id="benefits"
+                columns={[1, 2, 4]}
+                iconSize={4}
+                innerWidth="container.xl"
+                pt="20"
+                features={[
+                    {
+                    
+                    title: 'Accessible',
+                    icon: FiSmile,
+                    description:
+                        'Full Index protocols accesible through Phone and Web console ',
+                    iconPosition: 'left',
+                    delay: 0.6,
+                    },
+                    {
+                    title: 'Intuitive',
+                    icon: FiSliders,
+                    description:
+                        'Cryptocurrency Finance products that are accessible and make sense',
+                    iconPosition: 'left',
+                    delay: 0.8,
+                    },
+                    {
+                    title: 'Composable',
+                    icon: FiGrid,
+                    description:
+                        'Compose and interact with products that to fit your needs',
+                    iconPosition: 'left',
+                    delay: 1,
+                    },
+                    {
+                    title: 'Productive',
+                    icon: FiThumbsUp,
+                    description:
+                        'Iteratively compounding your funds in a safe and aduitable manner',
+                    iconPosition: 'left',
+                    delay: 1.1,
+                    },
+                ]}
             reveal={FallInPlace}
             />
         </Box>

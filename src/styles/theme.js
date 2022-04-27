@@ -80,7 +80,7 @@ const theme = extendTheme(
     semanticTokens: {
       colors: {
         codeBackground: {
-          default: blacken('purple.600', 70)(baseTheme),
+          default: 'orange.600', baseTheme,
           _dark: 'gray.800',
         },
         muted: {
