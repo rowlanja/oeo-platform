@@ -27,7 +27,7 @@ const styles = {
       webkitFontSmoothing: 'antialiased',
       textRendering: 'optimizeLegibility',
       color: mode('gray.900', 'white')(props),
-      bg: mode('white', 'gray.900')(props),
+      bg: mode('#F8F9FA', 'gray.900')(props),
       minHeight: 'auto',
     },
     'div#__next, div#__next > div': {

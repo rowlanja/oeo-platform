@@ -4,24 +4,24 @@ import { CheckIcon } from '@chakra-ui/icons'
 
 
 import {
-  FiBox,
-  FiCheck,
-  FiCode,
-  FiCopy,
-  FiFlag,
-  FiGrid,
-  FiLock,
-  FiSearch,
-  FiSliders,
-  FiSmile,
-  FiTerminal,
-  FiThumbsUp,
-  FiToggleLeft,
-  FiTrendingUp,
-  FiArrowRight,
-  FiUserPlus,
-  FiTwitter, 
-  FiGithub,
+    FiBox,
+    FiCheck,
+    FiCode,
+    FiCopy,
+    FiFlag,
+    FiGrid,
+    FiLock,
+    FiSearch,
+    FiSliders,
+    FiSmile,
+    FiTerminal,
+    FiThumbsUp,
+    FiToggleLeft,
+    FiTrendingUp,
+    FiArrowRight,
+    FiUserPlus,
+    FiTwitter,
+    FiGithub,
 } from 'react-icons/fi'
 // import { FormDialog } from '@chakra-ui/react'
 import { Field } from '@saas-ui/forms'
@@ -93,235 +93,212 @@ import OneEyeOpenLogo from "../components/logos/Logo.png";
 
 const Pricing = () => {
     return (
-      <Section id="pricing" pos="relative">
-        {/* <BackgroundGradient animate={false} height="100%" /> */}
-        <Box zIndex="2" pos="relative">
-          <SectionTitle
-            title="Pricing for every stage"
-            description="Pay once and get life-time access and free updates to our high quality components."
-          ></SectionTitle>
-  
-          <SimpleGrid columns={[1, null, 3]} spacing={4}>
-            <PricingBox
-              title="Open Source"
-              description="Basic components, perfect to get started."
-              price="Free"
-            >
-              <PricingFeatures>
-                <PricingFeature title="MIT License" />
-                <PricingFeature title="Authentication (Clerk/Supabase/Magic)" />
-                <PricingFeature title="Forms (react-hook-form)" />
-                <PricingFeature title="Modals manager" />
-                <PricingFeature title="Hotkeys" />
-                <PricingFeature title="Web3 components" />
-                <Text fontSize="sm">And much more...</Text>
-              </PricingFeatures>
-              {/* <ButtonLink href="/docs/introduction" variant="outline" mt="10">
+        <Section id="tools" pos="relative" >
+            {/* <BackgroundGradient animate={false} height="100%" /> */}
+            <Box zIndex="2" pos="relative">
+                <SectionTitle
+                    title="Intial Platform Tools"
+                    description="We plan to offer the following tools on launch with more to come "
+                ></SectionTitle>
+
+                <SimpleGrid columns={[1, null, 3]} spacing={4}>
+                    <PricingBox
+                        title="Index Crypto Investments"
+                        description="Community Derived Diverse portfolios that maximise return."
+                        price=""
+                    >
+                        <PricingFeatures>
+                            <PricingFeature iconColor="orange.500" title="DAO participation" />
+                            <PricingFeature iconColor="orange.500" title="Fair Voting for allocation" />
+                            <PricingFeature iconColor="orange.500" title="Fast Deposit Verification" />
+                            <PricingFeature iconColor="orange.500" title="Automated Deposits" />
+                            <PricingFeature iconColor="orange.500" title="Fast Withdrawls" />
+                            <PricingFeature iconColor="orange.500" title="Minimized Gas Fees" />
+                            <Text fontSize="sm">And much more...</Text>
+                        </PricingFeatures>
+                        {/* <ButtonLink href="/docs/introduction" variant="outline" mt="10">
                 View documentation
               </ButtonLink> */}
-            </PricingBox>
-            <PricingBox
-              title="Bootstrap"
-              price={
-                <HStack>
-                  <Text
-                    textDecoration="line-through"
-                    fontSize="sm"
-                    color="gray.400"
-                  >
-                    €199,-
-                  </Text>
-                  <Text>€99,-</Text>
-                </HStack>
-              }
-              description="Complete frontend stack for bootstrappers and small teams."
-              borderColor="primary.500"
-              boxShadow="md"
-            >
-              <PricingFeatures>
-                <PricingFeature title="One project" />
-                <PricingFeature title="One developer" />
-                <PricingFeature title="Advanced components" />
-                <PricingFeature title="Multiple themes" />
-                <PricingFeature title="Next.js and Electron boilerplates" />
-                <PricingFeature title="Free updates" />
-                 
-                <PricingFeature
-                  title="Private beta access"
-                  iconColor="green.500"
-                />
-              </PricingFeatures>
-              {/* <ButtonLink
+                    </PricingBox>
+
+                    <PricingBox
+                        title="Index Staking Pool"
+                        price={
+                            <HStack>
+                            </HStack>
+                        }
+                        description="Automated staking across a range of highly secure and highly lucrative pools."
+                        borderColor="primary.500"
+                        boxShadow="md"
+                    >
+                        <PricingFeatures>
+                            <PricingFeature iconColor="orange.500" title="Increase Return" />
+                            <PricingFeature iconColor="orange.500" title="Maximized Safety" />
+                            <PricingFeature iconColor="orange.500" title="Easy Withdrawls" />
+                            <PricingFeature iconColor="orange.500" title="Professional Dashboard" />
+                            <PricingFeature iconColor="orange.500" title="Minimized Gas Fees" />
+                            <PricingFeature iconColor="orange.500" title="Free updates" />
+                            <Text fontSize="sm">And much more...</Text>
+                        </PricingFeatures>
+                        {/* <ButtonLink
                 colorScheme="primary"
                 href="https://appulse.gumroad.com/l/saas-ui-pro-pre-order?variant=Single%20license"
                 className="gumroad-button" >
                  Pre-order 
               </ButtonLink>  */}
-            </PricingBox>
-            <PricingBox
-              title="Startup"
-              price={
-                <HStack>
-                  <Text
-                    textDecoration="line-through"
-                    fontSize="sm"
-                    color="gray.400"
-                  >
-                    €999,-
-                  </Text>
-                  <Text>€499,-</Text>
-                </HStack>
-              }
-              description="Unlimited license for growing teams."
-            >
-              <PricingFeatures>
-                <PricingFeature title="Unlimited projects" />
-                <PricingFeature title="Unlimited developers" />
-                <PricingFeature title="Everything from Bootstrap" />
-                 
-                <PricingFeature
-                  title="Private beta access"
-                  iconColor="green.500"
-                />
-              </PricingFeatures>
-              {/* <ButtonLink
+                    </PricingBox>
+
+                    <PricingBox
+                        title="Index ICO Launch"
+                        price={
+                            <HStack>
+                            </HStack>
+                        }
+                        description=" Automated diverse participation in carefully selected ICO launchs"
+                    >
+                        <PricingFeatures>
+                            <PricingFeature iconColor="orange.500" title="Fair project voting" />
+                            <PricingFeature iconColor="orange.500" title="Control over funds" />
+                            <PricingFeature iconColor="orange.500" title="Maximises ICO return" />
+                            <PricingFeature title="Minimises risk" iconColor="orange.500" />
+                        </PricingFeatures>
+                        {/* <ButtonLink
                 colorScheme="primary"
                 href="https://appulse.gumroad.com/l/saas-ui-pro-pre-order?variant=Unlimited%20license"
                 className="gumroad-button"
               >
                 Pre-order
               </ButtonLink> */}
-            </PricingBox>
-          </SimpleGrid>
-  
-          <Text
-            p="8"
-            textAlign="center"
-            color={useColorModeValue('gray.500', 'gray.400')}
-          >
-            VAT may be applicable depending on your location.
-          </Text>
-        </Box>
-      </Section>
+                    </PricingBox>
+                </SimpleGrid>
+
+                <Text
+                    p="8"
+                    textAlign="center"
+                    color={useColorModeValue('gray.500', 'gray.400')}
+                >
+                    And lots more to come
+                </Text>
+            </Box>
+        </Section>
     )
-  }
-  
+}
+
 const PricingFeatures = ({ children }) => {
-return (
-    <VStack
-    align="stretch"
-    justifyContent="stretch"
-    spacing="4"
-    mb="8"
-    flex="1"
-    >
-    {children}
-    </VStack>
-)
+    return (
+        <VStack
+            align="stretch"
+            justifyContent="stretch"
+            spacing="4"
+            mb="8"
+            flex="1"
+        >
+            {children}
+        </VStack>
+    )
 }
 
 const PricingFeature = ({ title, iconColor = 'primary.500' }) => {
-return (
-    <HStack>
-    <CheckIcon color={iconColor} />{' '}
-    <Text flex="1" fontSize="sm">
-        {title}
-    </Text>
-    </HStack>
-)
+    return (
+        <HStack>
+            <CheckIcon color={iconColor} />{' '}
+            <Text flex="1" fontSize="sm">
+                {title}
+            </Text>
+        </HStack>
+    )
 }
 
 const PricingBox = ({ title, description, price, children, ...props }) => {
-return (
-    <VStack
-    zIndex="2"
-    bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
-    borderRadius="md"
-    p="8"
-    flex="1 0"
-    alignItems="stretch"
-    border="1px solid"
-    borderColor={useColorModeValue('gray.400', 'gray.800')}
-    {...props}
-    >
-    <Heading as="h3" size="md" fontWeight="bold" fontSize="lg" mb="2">
-        {title}
-    </Heading>
-    <Box color={useColorModeValue('gray.500', 'gray.400')}>{description}</Box>
-    <Box fontSize="2xl" fontWeight="bold" py="4">
-        {price}
-    </Box>
-    <VStack align="stretch" justifyContent="stretch" spacing="4" flex="1">
-        {children}
-    </VStack>
-    </VStack>
-)
+    return (
+        <VStack
+            zIndex="2"
+            bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
+            borderRadius="md"
+            p="8"
+            flex="1 0"
+            alignItems="stretch"
+            border="1px solid"
+            borderColor={useColorModeValue('gray.400', 'gray.800')}
+            {...props}
+        >
+            <Heading as="h3" size="md" fontWeight="bold" fontSize="lg" mb="2">
+                {title}
+            </Heading>
+            <Box color={useColorModeValue('gray.500', 'gray.400')}>{description}</Box>
+            <Box fontSize="2xl" fontWeight="bold" py="4">
+                {price}
+            </Box>
+            <VStack align="stretch" justifyContent="stretch" spacing="4" flex="1">
+                {children}
+            </VStack>
+        </VStack>
+    )
 }
 
 const FaqItem = ({ question, answer }) => {
-return (
-    <chakra.dl>
-    <chakra.dt fontWeight="semibold">{question}</chakra.dt>
-    <chakra.dd color={useColorModeValue('gray.500', 'gray.400')}>
-        {answer}
-    </chakra.dd>
-    </chakra.dl>
-)
+    return (
+        <chakra.dl>
+            <chakra.dt fontWeight="semibold">{question}</chakra.dt>
+            <chakra.dd color={useColorModeValue('gray.500', 'gray.400')}>
+                {answer}
+            </chakra.dd>
+        </chakra.dl>
+    )
 }
-    
+
 const RequestAccess = () => {
-return (
-    <CTA
-        id="request-access"
-        title="Get early access"
-        py="14"
-        description={
-            <p>
-            Not ready to pre-order yet? No worries, we will notify you when we
-            launch.
-            </p>
-        }
-        variant="subtle"
-    >
-        <Container
-        borderRadius="md"
-        bg={useColorModeValue('white', 'gray.700')}
-        borderWidth="1px"
-        borderColor={useColorModeValue('gray.300', 'gray.700')}
-        p={8}
-        width={['90vw', null, 'md']}
+    return (
+        <CTA
+            id="access"
+            title="Get early access"
+            py="14"
+            description={
+                <p>
+                    Sadly, we are not ready for launch. But we can notify you when we're ready?.
+                </p>
+            }
+            variant="aalternate"
         >
-        <SignupForm />
-        </Container>
-    </CTA> 
-)
+            <Container
+                borderRadius="md"
+                bg={useColorModeValue('white', 'gray.700')}
+                borderWidth="1px"
+                borderColor={useColorModeValue('gray.300', 'gray.700')}
+                p={8}
+                width={['90vw', null, 'md']}
+            >
+                <SignupForm />
+            </Container>
+        </CTA>
+    )
 }
 
 const BoilerplateCode = () => {
-const { isOpen, onOpen, onClose } = useDisclosure()
-const fieldRef = React.useRef()
-function example() {
-    console.log('testing')
-}
-return (
-    <Section innerWidth="container.xl">
-    <Stack spacing="12" direction={['column', null, 'row']}>
-        <Box py="10" flex="1">
-        <Heading
-            size="2xl"
-            lineHeight="shorter"
-            mb="8"
-            fontWeight="extrabold"
-        >
-            Safety through Diversification.
-        </Heading>
-        <VStack spacing="4" alignItems="flex-start">
-            <Text fontSize={['xl', null, '2xl']} color="muted">
-            Through automated staking and investing across a number of diverse crypro assets we increase safety aswell potential returns. 
-            </Text>
-        </VStack>
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const fieldRef = React.useRef()
+    function example() {
+        console.log('testing')
+    }
+    return (
+        <Section innerWidth="container.xl">
+            <Stack spacing="12" direction={['column', null, 'row']}>
+                <Box py="10" flex="1">
+                    <Heading
+                        size="2xl"
+                        lineHeight="shorter"
+                        mb="8"
+                        fontWeight="extrabold"
+                    >
+                        Safety through Diversification.
+                    </Heading>
+                    <VStack spacing="4" alignItems="flex-start">
+                        <Text fontSize={['xl', null, '2xl']} color="muted">
+                            Through automated staking and investing across a number of diverse crypro assets we increase safety aswell potential returns.
+                        </Text>
+                    </VStack>
 
-        {/* <FormDialog
+                    {/* <FormDialog
             title="Create project"
             isOpen={isOpen}
             onClose={onClose}
@@ -339,76 +316,76 @@ return (
             rules={{ required: 'Please enter a name' }}
             />
         </FormDialog> */}
-        </Box>
-        <Box
-        color='orange.600'
-        display="flex"
-        flex="1"
-        py="10"
-        alignItems="center"
-        justifyContent="center"
-        bg="codeBackground"
-        borderRadius="2xl"
-        >
-        <Box width="90%" overflowX="auto">
-            {/* <CodePanel language="typescript">{codeExamples.form}</CodePanel> */}
-        </Box>
-        </Box>
-    </Stack>
-    </Section>
-)
+                </Box>
+                <Box
+                    color='orange.600'
+                    display="flex"
+                    flex="1"
+                    py="10"
+                    alignItems="center"
+                    justifyContent="center"
+                    bg="codeBackground"
+                    borderRadius="2xl"
+                >
+                    <Box width="90%" overflowX="auto">
+                        {/* <CodePanel language="typescript">{codeExamples.form}</CodePanel> */}
+                    </Box>
+                </Box>
+            </Stack>
+        </Section>
+    )
 }
 
 const Themable = () => {
-return (
-    <Section innerWidth="container.xl">
-    <Box py="10" flex="1" width={['full', null, '50%']}>
-        <Heading size="2xl" mb="8" fontWeight="extrabold">
-        Leverage Your Power.
-        </Heading>
-        <VStack spacing="4" alignItems="flex-start">
-        <Text fontSize={['xl', null, '2xl']} color="muted">
-            Through the OneEyeOpen Dao you can leverage your investment automatically for a say in new services, operations or decisions made on across the OneEyeOpen platform.
-        </Text>
-        </VStack>
-    </Box>
-    <Stack spacing="12" direction={{ base: 'column', xl: 'row' }}>
-        <Box
-        display="flex"
-        flex="1"
-        alignItems="center"
-        justifyContent="center"
-        bg="codeBackground"
-        borderRadius="2xl"
-        >
-        <Tabs width="100%" colorScheme="white">
-            <TabList borderColor="whiteAlpha.200" color="white">
-            <Tab>Style props</Tab>
-            <Tab>Theme</Tab>
-            </TabList>
-            <TabPanels>
-            <TabPanel>
-                {/* <CodePanel language="typescript" height="280px">
+    return (
+        <Section innerWidth="container.xl" >
+            <Box py="10" flex="1" width={['full', null, '50%']} >
+                <Heading size="2xl" mb="8" fontWeight="extrabold">
+                    Leverage Your Power.
+                </Heading>
+                <VStack spacing="4" alignItems="flex-start">
+                    <Text fontSize={['xl', null, '2xl']} color="muted">
+                        Through the OneEyeOpen Dao you can leverage your investment automatically for a say in new services, operations or decisions made on across the OneEyeOpen platform.
+                    </Text>
+                </VStack>
+            </Box>
+            <Stack spacing="12" direction={{ base: 'column', xl: 'row' }}>
+                <Box
+                    display="flex"
+                    flex="1"
+                    alignItems="center"
+                    justifyContent="center"
+                    bg="codeBackground"
+                    borderRadius="2xl"
+                >
+                    <Tabs width="100%" colorScheme="white">
+                        <TabList borderColor="whiteAlpha.200" color="white">
+                            <Tab>Style props</Tab>
+                            <Tab>Theme</Tab>
+                        </TabList>
+                        <TabPanels>
+                            <TabPanel>
+                                {/* <CodePanel language="typescript" height="280px">
                 {codeExamples.styleProps}
                 </CodePanel> */}
-            </TabPanel>
-            <TabPanel>
-                {/* <CodePanel language="typescript" height="280px">
+                            </TabPanel>
+                            <TabPanel>
+                                {/* <CodePanel language="typescript" height="280px">
                 {codeExamples.theme}
                 </CodePanel> */}
-            </TabPanel>
-            </TabPanels>
-        </Tabs>
-        </Box>
-        <Box
-        display="flex"
-        flex="1"
-        p={[0, null, 10]}
-        alignItems="center"
-        justifyContent="center"
-        borderRadius="2xl"
-        >
-        {/* <Banner
+                            </TabPanel>
+                        </TabPanels>
+                    </Tabs>
+                </Box>
+                <Box
+                    display="flex"
+                    flex="1"
+                    p={[0, null, 10]}
+                    alignItems="center"
+                    justifyContent="center"
+                    borderRadius="2xl"
+                >
+                    {/* <Banner
             display="flex"
             bg={useColorModeValue('white', 'gray.900')}
             colorScheme="purple"
@@ -448,146 +425,145 @@ return (
             </BannerContent>
             <BannerCloseButton position="absolute" top="2" right="4" />
         </Banner> */}
-        </Box>
-    </Stack>
-    </Section>
-)
+                </Box>
+            </Stack>
+        </Section>
+    )
 }
 
 const HighlightBox = (props) => {
-const { children, ...rest } = props
-return (
-    <VStack
-    bgColor={useColorModeValue('gray.100', 'gray.800')}
-    borderRadius="md"
-    p="8"
-    flex="1 0"
-    alignItems="flex-start"
-    spacing="8"
-    overflow="hidden"
-    position="relative"
-    {...rest}
-    >
-    {children}
-    </VStack>
-)
+    const { children, ...rest } = props
+    return (
+        <VStack
+            bgColor={useColorModeValue('gray.100', 'gray.800')}
+            borderRadius="md"
+            p="8"
+            flex="1 0"
+            alignItems="flex-start"
+            spacing="8"
+            overflow="hidden"
+            position="relative"
+            {...rest}
+        >
+            {children}
+        </VStack>
+    )
 }
 
 const Highlights = () => {
-const theme = useTheme()
-const { value, onCopy, hasCopied } = useClipboard('yarn add @saas-ui/react')
-return (
-    <Section innerWidth="container.xl" position="relative" overflow="hidden">
-    <Grid
-        templateColumns={{ base: 'repeat(1, 1fr)', lg: 'repeat(3, 1fr)' }}
-        gap={8}
-        position="relative"
-    >
-        <GridItem colSpan={[1, null, 2]} as={HighlightBox}>
-        <Heading fontSize="1.4em">The Proof is in the Pudding</Heading>
-        <Text color="muted" fontSize="xl">
-            Claims are useless. Actual proof is what users deserve before choosing OneEyeOpen as their platform. For a deeper
-            dive on the powerful fundamentals that drive our platform click below! 
-        </Text>
-        <Button
-            colorScheme="black"
-            variant="link"
-            as={Link}
-            href="/docs/introduction"
-            rightIcon={<FiArrowRight />}
-        >
-            Read fundamentals
-        </Button>
-        <HStack spacing="12">
-            <HStack
-            py="1"
-            px="1"
-            borderRadius="full"
-            bg="codeBackground"
-            borderWidth="1px"
+    const theme = useTheme()
+    const { value, onCopy, hasCopied } = useClipboard('yarn add @saas-ui/react')
+    return (
+        <Section innerWidth="container.xl" position="relative" overflow="hidden">
+            <Grid
+                templateColumns={{ base: 'repeat(1, 1fr)', lg: 'repeat(3, 1fr)' }}
+                gap={8}
+                position="relative"
             >
-            {/* <CodePanel language="bash">{value}</CodePanel> */}
-            <IconButton
-                icon={hasCopied ? <FiCheck /> : <FiCopy />}
-                aria-label="copy"
-                onClick={onCopy}
-                variant="ghost"
-                borderRadius="full"
-                color="white"
-            />
-            </HStack>
-        </HStack>
-        </GridItem>
-        <GridItem as={HighlightBox}>
-        <Heading fontSize="1.4em">Solid foundations</Heading>
-        <Text color="muted" fontSize="lg">
-            We don&apos;t like to re-invent the wheel, neither should you. We
-            selected the most productive and established tools in the cryptography and finance
-            scene to build our platform.  
-            
-        </Text>
-        </GridItem>
-        <GridItem
-        
-        as={HighlightBox}
-        bgGradient={`linear(to-r, ${transparentize(
-            'purple.500',
-            0.3
-        )(theme)}, ${transparentize('cyan.500', 0.3)(theme)})`}
-        justifyContent="center"
-        >
-        <Heading fontSize="1.4em">
-            Active Team & Community
-        </Heading>
-        <Card
-            avatar={
-            <Avatar name="Tien Tienth" src="/testimonials/turbothinh.png" />
-            }
-            title="Tien Thinh"
-            subtitle="@turbothinh"
-            border="0"
-            bg="transparent"
-            boxShadow="none"
-            sx={{
-            '& p': {
-                color: useColorModeValue('blackAlpha.600', 'whiteAlpha.500'),
-            },
-            }}
-        >
-            <CardBody>
-            Saas UI is the ONLY template out there that does the code
-            structure that I think can scale 😄
-            </CardBody>
-        </Card>
-        <Button
-            colorScheme="black"
-            variant="link"
-            as={Link}
-            href="/docs/introduction"
-            rightIcon={<FiTwitter />}
-        >
-            Check Twitter
-        </Button>
-        <Button
-            colorScheme="black"
-            variant="link"
-            as={Link}
-            href="/docs/introduction"
-            rightIcon={<FiGithub />}
-        >
-            Check Github
-        </Button>
-        </GridItem>
-        <GridItem colSpan={[1, null, 2]} as={HighlightBox}>
-        <Heading fontSize="1.4em">
-            Safe Return Maximisation    
-        </Heading>
-        <Text color="muted" fontSize="lg">
-            There are millions of things to learn when trying to stake, invest or trade cryptocurrencies. 
-            OneEyeOpen platform takes the time and energy consuming nature out of cryptocurrencies by using
-            industry tested finance and cryptographic technologies.   
-        </Text>
-        {/* <Wrap>
+                <GridItem colSpan={[1, null, 2]} as={HighlightBox}>
+                    <Heading fontSize="1.4em">The Proof is in the Pudding</Heading>
+                    <Text color="muted" fontSize="xl">
+                        Claims are useless. Actual proof is what users deserve before choosing OneEyeOpen as their platform. For a deeper
+                        dive on the powerful fundamentals that drive our platform click below!
+                    </Text>
+                    <Button
+                        colorScheme="black"
+                        variant="link"
+                        as={Link}
+                        href="/docs/introduction"
+                        rightIcon={<FiArrowRight />}
+                    >
+                        Read fundamentals
+                    </Button>
+                    <HStack spacing="12">
+                        <HStack
+                            py="1"
+                            px="1"
+                            borderRadius="full"
+                            bg="codeBackground"
+                            borderWidth="1px"
+                        >
+                            {/* <CodePanel language="bash">{value}</CodePanel> */}
+                            <IconButton
+                                icon={hasCopied ? <FiCheck /> : <FiCopy />}
+                                aria-label="copy"
+                                onClick={onCopy}
+                                variant="ghost"
+                                borderRadius="full"
+                                color="white"
+                            />
+                        </HStack>
+                    </HStack>
+                </GridItem>
+                <GridItem as={HighlightBox}>
+                    <Heading fontSize="1.4em">Solid foundations</Heading>
+                    <Text color="muted" fontSize="lg">
+                        We don&apos;t like to re-invent the wheel, neither should you. We
+                        selected the most productive and established tools in the cryptography and finance
+                        scene to build our platform.
+
+                    </Text>
+                </GridItem>
+                <GridItem
+
+                    as={HighlightBox}
+                    bgGradient={`linear(to-r, ${transparentize(
+                        'orange.500',
+                        0.3
+                    )(theme)}, ${transparentize('white', 0.3)(theme)})`}
+                    justifyContent="center"
+                >
+                    <Heading fontSize="1.4em">
+                        Active Team & Community
+                    </Heading>
+                    <Card
+                        avatar={
+                            <Avatar name="Tien Tienth" src="/testimonials/turbothinh.png" />
+                        }
+                        title="Tien Thinh"
+                        subtitle="@turbothinh"
+                        border="0"
+                        bg="transparent"
+                        boxShadow="none"
+                        sx={{
+                            '& p': {
+                                color: useColorModeValue('blackAlpha.600', 'whiteAlpha.500'),
+                            },
+                        }}
+                    >
+                        <CardBody>
+                            Powerful crypto staking and investing @OneEyeOpen platform
+                        </CardBody>
+                    </Card>
+                    <Button
+                        colorScheme="black"
+                        variant="link"
+                        as={Link}
+                        href="/docs/introduction"
+                        rightIcon={<FiTwitter />}
+                    >
+                        Check Twitter
+                    </Button>
+                    <Button
+                        colorScheme="black"
+                        variant="link"
+                        as={Link}
+                        href="/docs/introduction"
+                        rightIcon={<FiGithub />}
+                    >
+                        Check Github
+                    </Button>
+                </GridItem>
+                <GridItem colSpan={[1, null, 2]} as={HighlightBox}>
+                    <Heading fontSize="1.4em">
+                        Safe Return Maximisation
+                    </Heading>
+                    <Text color="muted" fontSize="lg">
+                        There are millions of things to learn when trying to stake, invest or trade cryptocurrencies.
+                        OneEyeOpen platform takes the time and energy consuming nature out of cryptocurrencies by using
+                        industry tested finance and cryptographic technologies.
+                    </Text>
+                    {/* <Wrap>
             {[
             'authentication',
             'navigation',
@@ -611,141 +587,141 @@ return (
             </Tag>
             ))}
         </Wrap> */}
-        </GridItem>
-    </Grid>
-    </Section>
-)
+                </GridItem>
+            </Grid>
+        </Section>
+    )
 }
 
 function Home() {
-return (
-    <Box>
-        {/* <BackgroundGradient animate={false} /> */}
-        <Box mb={8} w="full" position="relative" overflow="hidden">
-        <Box pos="relative">
-            <Container maxW="container.xl" py="40">
-            <Stack direction={['column', 'row']}>
-                <Hero
-                id="home"
-                justifyContent="flex-start"
-                px="0"
-                title={
-                    <FallInPlace>
-                    OneEyeOpen Console for all
-                    </FallInPlace>
-                }
-                description={
-                    <FallInPlace delay={0.4} fontWeight="medium">
-                    Advanced console for Index ICO launches, Index NFT funds & Index staking platform
-                    </FallInPlace>
-                }
-                >
-                <FallInPlace delay={0.8}>
-                    <HStack pt="4" pb="12" spacing="8">
-                    <FallInPlace delay={1}>
-                        <img  width={250} height={250} src={OneEyeOpenLogo}/>
-                    </FallInPlace>
+    return (
+        <Box>
+            {/* <BackgroundGradient animate={false} /> */}
+            <Box mb={8} w="full" position="relative" overflow="hidden" >
+                <Box pos="relative">
+                    <Container maxW="container.xl" py="40">
+                        <Stack direction={['column', 'row']}>
+                            <Hero
+                                id="home"
+                                justifyContent="flex-start"
+                                px="0"
+                                title={
+                                    <FallInPlace>
+                                        OneEyeOpen Console
+                                    </FallInPlace>
+                                }
+                                description={
+                                    <FallInPlace delay={0.4} fontWeight="medium">
+                                        Advanced console for Index ICO Launches, Index NFT Funds & Index Staking platform
+                                    </FallInPlace>
+                                }
+                            >
+                                <FallInPlace delay={0.8}>
+                                    <HStack pt="4" pb="12" spacing="8" align='center'>
+                                        <FallInPlace delay={1}>
+                                            <img width={250} height={250} src={OneEyeOpenLogo} />
+                                        </FallInPlace>
 
-                    </HStack>
+                                    </HStack>
 
-                    <ButtonGroup
-                    flexDirection={['column', null, 'row']}
-                    spacing={[0, null, 8]}
-                    alignItems="center"
-                    >
-                    <Button
+                                    <ButtonGroup
+                                        flexDirection={['column', null, 'row']}
+                                        spacing={[0, null, 8]}
+                                        alignItems="center"
+                                    >
+                                        <Button
+                                            colorScheme="orange"
+                                            size="lg"
+                                            mb={[8, null, 0]}
+                                            onClick={() => {
+                                                document
+                                                    .getElementById('access')
+                                                    .scrollIntoView({ behavior: 'smooth' })
+                                            }}
+                                        >
+                                            Get early access
+                                        </Button>
+                                        <Button
+                                            colorScheme="black"
+                                            variant="link"
+                                            as={Link}
+                                            href="/docs/introduction"
+                                            rightIcon={<FiArrowRight />}
+                                        >
+                                            Read documentation
+                                        </Button>
+                                    </ButtonGroup>
+                                </FallInPlace>
+                            </Hero>
+                            <Box
+                                height="600px"
+                                position="absolute"
+                                display={{ base: 'none', lg: 'block' }}
+                                left={{ lg: '60%', xl: '55%' }}
+                                width="80vw"
+                                maxW="1100px"
+                                margin="0 auto"
+                            >
+
+                            </Box>
+                        </Stack>
+                    </Container>
+                    <Features
                         colorScheme="orange"
-                        size="lg"
-                        mb={[8, null, 0]}
-                        onClick={() => {
-                        document
-                            .getElementById('pricing')
-                            .scrollIntoView({ behavior: 'smooth' })
-                        }}
-                    >
-                        Get early access
-                    </Button>
-                    <Button
-                        colorScheme="black"
-                        variant="link"
-                        as={Link}
-                        href="/docs/introduction"
-                        rightIcon={<FiArrowRight />}
-                    >
-                        Read documentation
-                    </Button>
-                    </ButtonGroup>
-                </FallInPlace>
-                </Hero>
-                <Box
-                    height="600px"
-                    position="absolute"
-                    display={{ base: 'none', lg: 'block' }}
-                    left={{ lg: '60%', xl: '55%' }}
-                    width="80vw"
-                    maxW="1100px"
-                    margin="0 auto"
-                >
+                        id="benefits"
+                        columns={[1, 2, 4]}
+                        iconSize={4}
+                        innerWidth="container.xl"
+                        pt="20"
+                        features={[
+                            {
 
+                                title: 'Accessible',
+                                icon: FiSmile,
+                                description:
+                                    'Full Index protocols accesible through Phone and Web console ',
+                                iconPosition: 'left',
+                                delay: 0.6,
+                            },
+                            {
+                                title: 'Intuitive',
+                                icon: FiSliders,
+                                description:
+                                    'Cryptocurrency Finance products that are accessible and make sense',
+                                iconPosition: 'left',
+                                delay: 0.8,
+                            },
+                            {
+                                title: 'Composable',
+                                icon: FiGrid,
+                                description:
+                                    'Compose and interact with products that to fit your needs',
+                                iconPosition: 'left',
+                                delay: 1,
+                            },
+                            {
+                                title: 'Productive',
+                                icon: FiThumbsUp,
+                                description:
+                                    'Iteratively compounding your funds in a safe and aduitable manner',
+                                iconPosition: 'left',
+                                delay: 1.1,
+                            },
+                        ]}
+                        reveal={FallInPlace}
+                    />
                 </Box>
-            </Stack>
-            </Container>
-            <Features
-                colorScheme="orange"
-                id="benefits"
-                columns={[1, 2, 4]}
-                iconSize={4}
-                innerWidth="container.xl"
-                pt="20"
-                features={[
-                    {
-                    
-                    title: 'Accessible',
-                    icon: FiSmile,
-                    description:
-                        'Full Index protocols accesible through Phone and Web console ',
-                    iconPosition: 'left',
-                    delay: 0.6,
-                    },
-                    {
-                    title: 'Intuitive',
-                    icon: FiSliders,
-                    description:
-                        'Cryptocurrency Finance products that are accessible and make sense',
-                    iconPosition: 'left',
-                    delay: 0.8,
-                    },
-                    {
-                    title: 'Composable',
-                    icon: FiGrid,
-                    description:
-                        'Compose and interact with products that to fit your needs',
-                    iconPosition: 'left',
-                    delay: 1,
-                    },
-                    {
-                    title: 'Productive',
-                    icon: FiThumbsUp,
-                    description:
-                        'Iteratively compounding your funds in a safe and aduitable manner',
-                    iconPosition: 'left',
-                    delay: 1.1,
-                    },
-                ]}
-            reveal={FallInPlace}
-            />
-        </Box>
 
-        {/* <ComponentShowcase /> */}
+                {/* <ComponentShowcase /> */}
 
-        <Box id="features">
-            <BoilerplateCode />
+                <Box id="features">
+                    <BoilerplateCode />
 
-            <Themable />
+                    <Themable />
 
-            <Highlights />
-        </Box>
-{/* 
+                    <Highlights />
+                </Box>
+                {/* 
         <Section
             innerWidth={['100%', null, 'container.xl']}
             position="relative"
@@ -801,84 +777,85 @@ return (
             </Box>
         </Section> */}
 
-        <ProFeatures />
+                <ProFeatures />
 
-        <Section>
-            <SectionTitle
-            title="Plays well with others"
-            description={
-                <>
-                OneEyeOpen platform is blockchain agnostic meaning it is deployed across all types of blockchains that you love.
-                </>
-            }
-            />
+                <Section>
+                    <SectionTitle
+                        title="Plays well with others"
+                        id="pro-features"
+                        description={
+                            <>
+                                OneEyeOpen platform is blockchain agnostic meaning it is deployed across all types of blockchains that you love.
+                            </>
+                        }
+                    />
 
-            <SimpleGrid
-            columns={[2, null, 4]}
-            columnGap={8}
-            sx={{
-                svg: {
-                width: '80%',
-                height: 'auto',
-                maxHeight: '40px',
-                },
-            }}
-            >
-            <Link
-                href="https://redwoodjs.com"
-                p="8"
-                h="100%"
-                d="flex"
-                sx={{
-                path: {
-                    fill: useColorModeValue('#000', '#fff'),
-                },
-                }}
-            >
-                {/* <RedwoodJS alt="RedwoodJS logo" /> */}
-                <VisuallyHidden>RedwoodJS</VisuallyHidden>
-            </Link>
+                    <SimpleGrid
+                        columns={[2, null, 4]}
+                        columnGap={8}
+                        sx={{
+                            svg: {
+                                width: '80%',
+                                height: 'auto',
+                                maxHeight: '40px',
+                            },
+                        }}
+                    >
+                        <Link
+                            href="https://redwoodjs.com"
+                            p="8"
+                            h="100%"
+                            d="flex"
+                            sx={{
+                                path: {
+                                    fill: useColorModeValue('#000', '#fff'),
+                                },
+                            }}
+                        >
+                            {/* <RedwoodJS alt="RedwoodJS logo" /> */}
+                            <VisuallyHidden>RedwoodJS</VisuallyHidden>
+                        </Link>
 
-            <Link
-                href="https://nextjs.com"
-                p="8"
-                h="100%"
-                d="flex"
-                sx={{
-                path: {
-                    fill: useColorModeValue('#000', '#fff'),
-                },
-                }}
-            >
-                {/* <NextJS alt="Next.JS logo" /> */}
-                <VisuallyHidden>Next.js</VisuallyHidden>
-            </Link>
+                        <Link
+                            href="https://nextjs.com"
+                            p="8"
+                            h="100%"
+                            d="flex"
+                            sx={{
+                                path: {
+                                    fill: useColorModeValue('#000', '#fff'),
+                                },
+                            }}
+                        >
+                            {/* <NextJS alt="Next.JS logo" /> */}
+                            <VisuallyHidden>Next.js</VisuallyHidden>
+                        </Link>
 
-            <Link href="https://blitzjs.com" p="8" h="100%" d="flex">
-                {/* <Blitz alt="Blitz.js logo" /> */}
-                <VisuallyHidden>Blitz.js</VisuallyHidden>
-            </Link>
+                        <Link href="https://blitzjs.com" p="8" h="100%" d="flex">
+                            {/* <Blitz alt="Blitz.js logo" /> */}
+                            <VisuallyHidden>Blitz.js</VisuallyHidden>
+                        </Link>
 
-            <Link
-                href="https://supabase.com"
-                p="8"
-                h="100%"
-                d="flex"
-                sx={{
-                'path.supabase_svg__wordmark': {
-                    fill: useColorModeValue('#1F1F1F', '#FFF'),
-                },
-                }}
-            >
-                {/* <Supabase
+                        <Link
+                            href="https://supabase.com"
+                            p="8"
+                            h="100%"
+                            d="flex"
+                            sx={{
+                                'path.supabase_svg__wordmark': {
+                                    fill: useColorModeValue('#1F1F1F', '#FFF'),
+                                },
+                            }}
+                        >
+                            {/* <Supabase
                 alt="Supabase logo"
                 viewBox="0 0 581 113" // somehow this gets removed when importing
                 /> */}
-                <VisuallyHidden>Supabase</VisuallyHidden>
-            </Link>
-            </SimpleGrid>
+                            <VisuallyHidden>Supabase</VisuallyHidden>
+                        </Link>
+                    </SimpleGrid>
 
-            {/* <Text
+                    {/* <Text
             fontSize="sm"
             opacity="0.4"
             width={['100%', null, '50%']}
@@ -890,13 +867,13 @@ return (
             Query, Turborepo, Prettier, Storybook, Jest, Testing Library and
             more...
             </Text> */}
-        </Section>
+                </Section>
 
-        <Pricing />
+                <Pricing />
 
-        <RequestAccess />
+                <RequestAccess />
 
-        <Section id="faq">
+                {/* <Section id="faq">
             <SectionTitle title="Frequently asked questions" />
 
             <SimpleGrid columns={[1, null, 2]} spacing={10}>
@@ -964,19 +941,19 @@ return (
                 }
             />
             </SimpleGrid>
-        </Section>
+        </Section> */}
+            </Box>
         </Box>
-    </Box>
     )
 }
 
-    
-    
-    
-   
-    
+
+
+
+
+
 const codeExamples = {
-      form: `import * as React from 'react'
+    form: `import * as React from 'react'
     import { FormDialog, Field } from '@saas-ui/react'
     interface CreateProjectInputs {
       name: string
@@ -999,7 +976,7 @@ const codeExamples = {
         </FormDialog>
       )
     }`,
-      styleProps: `<Banner
+    styleProps: `<Banner
       bg={useColorModeValue('white', 'gray.900')}
       colorScheme="purple"
       backgroundClip="padding-box"
@@ -1038,7 +1015,7 @@ const codeExamples = {
       </BannerContent>
       <BannerCloseButton position="absolute" top="2" right="4" />
     </Banner>`,
-      theme: `export default {
+    theme: `export default {
       variants: {
         gradient: (props) => {
           return {
@@ -1090,85 +1067,84 @@ const codeExamples = {
       }
     }`,
 }
-    
+
 const ProFeatures = () => {
     return (
-    <Features
-        id="pro-features"
-        title={
-            <div>
-            <Heading
-                lineHeight="short"
-                fontSize={['2xl', null, '4xl']}
-                textAlign="left"
-                as="p"
-            >
-                OneEyeOpen provides Crypto 3.0 
-            </Heading>
-        </div>
-        }
-        description={
-            <div>
-                {/* <Text fontSize={['xl', null, '2xl']}>
+        <Features
+            id="pro-features"
+            title={
+                <div>
+                    <Heading
+                        lineHeight="short"
+                        fontSize={['2xl', null, '4xl']}
+                        textAlign="left"
+                        as="p"
+                    >
+                        OneEyeOpen provides Crypto 3.0
+                    </Heading>
+                </div>
+            }
+            description={
+                <div>
+                    {/* <Text fontSize={['xl', null, '2xl']}>
                     Saas UI Pro includes everything you need to build frontends that
                     scale.
                     
                     Use it as a template for your next product or foundation for your
                     design system.
                 </Text> */}
-            </div>
-        }
-        align="left"
-        variant="alternate"
-        columns={[1, 2, 3]}
-        iconSize={4}
-        features={[
-        {
-            title: 'Components.',
-            icon: FiBox,
-            description:
-            'Modular cryptocurrency products',
-            variant: 'inline',
-        },
-        {
-            title: 'Walk-Through.',
-            icon: FiLock,
-            description:
-            'Example apps in Next.JS, Electron and Vite. Including authentication, billing, example pages, everything you need to get started FAST.',
-            variant: 'inline',
-        },
-        {
-            title: 'Tailorable.',
-            icon: FiSearch,
-            description:
-            'Extensively tailorable',
-            variant: 'inline',
-        },
-        {
-            title: 'Community',
-            icon: FiUserPlus,
-            description:
-            'Be heard no matter how big or small is staked.',
-            variant: 'inline',
-        },
-        {
-            title: 'Compounding',
-            icon: FiFlag,
-            description:
-            "Compounding investments and returns",
-            variant: 'inline',
-        },
-        {
-            title: 'Safety.',
-            icon: FiTrendingUp,
-            description:
-            'Time Tested smart contract and finance integration',
-            variant: 'inline',
-        },
-        ]}
-    />
+                </div>
+            }
+            align="left"
+            columns={[1, 2, 3]}
+            iconSize={4}
+            features={[
+                {
+                    title: 'Components.',
+                    icon: FiBox,
+                    description:
+                        'Modular cryptocurrency products',
+                    variant: 'inline',
+                },
+                {
+                    title: 'Profession Dashboard',
+                    icon: FiLock,
+                    description:
+                        'OneEyeOpen platforms aims to lead the crypto industry in advanced, tailorable dashboards',
+                    variant: 'inline',
+                },
+                {
+                    title: 'Tailorable.',
+                    icon: FiSearch,
+                    description:
+                        'Extensively tailorable',
+                    variant: 'inline',
+                },
+                {
+                    title: 'Community',
+                    icon: FiUserPlus,
+                    description:
+                        'Be heard no matter how big or small is staked.',
+                    variant: 'inline',
+                },
+                {
+                    title: 'Compounding',
+                    icon: FiFlag,
+                    description:
+                        "Compounding investments and returns",
+                    variant: 'inline',
+                },
+                {
+                    title: 'Safety.',
+                    icon: FiTrendingUp,
+                    description:
+                        'Time Tested smart contract and finance integration',
+                    variant: 'inline',
+                },
+            ]}
+        />
     )
 
 }
-    
+
 export default Home

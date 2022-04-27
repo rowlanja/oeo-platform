@@ -64,7 +64,7 @@ export default function SignupForm() {
   }
 
   var content = null
-  if (true) {
+  if (false) {
     content = (
       <Text>
         Awesome 😎 ! Thanks for signing up, we really appreciate your early
@@ -80,12 +80,11 @@ export default function SignupForm() {
             <FormLabel>Name</FormLabel>
             <Input
               name="name"
-              ref={initialRef}
               onChange={({ target }) => setName(target.value)}
             />
           </FormControl>
 
-          <FormControl isRequired isInvalid={!!error}>
+          <FormControl>
             <FormLabel>Email address</FormLabel>
             <Input
               name="email"
@@ -97,10 +96,10 @@ export default function SignupForm() {
           <Text
             fontSize="sm"
             color="muted"
-          >Don't worry, we hate spam too. We'll send you one follow-up email and will notify you when Saas UI Pro is launched.</Text>
+          >Everyone hates spam. Only one follow-up email will be sent to notify you when we are launched.</Text>
 
           <Button
-            colorScheme="primary"
+            colorScheme="orange"
             type="submit"
             size="md"
             isLoading={loading}

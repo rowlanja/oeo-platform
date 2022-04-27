@@ -13,9 +13,10 @@ export default function Section({
   children,
   innerWidth,
   className,
+  variant,
   ...props
 }) {
-  const styles = useStyleConfig('Section', props)
+  const styles = useStyleConfig('Section', {variant})
 
   const ownProps = omitThemingProps(props)
 
