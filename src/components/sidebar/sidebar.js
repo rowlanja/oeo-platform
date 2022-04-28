@@ -10,7 +10,7 @@ import Dao from "../../pages/dao";
 import Home from "../../pages/home";
 import Wallet from "../../pages/wallet";
 import Staking from "../../pages/staking";
-
+import './nav.css'
 export default function NavType() {
 
 
@@ -26,11 +26,11 @@ export default function NavType() {
                 placement="end"
                 >
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
+                    <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <Nav className="justify-content-end flex-grow-1 pe-3">
-                        <Nav.Link href="/">Home</Nav.Link>
+                    <Nav className="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <Nav.Link  className='nav-link' href="/">Home</Nav.Link>
                         <Nav.Link href="/dao">Dao</Nav.Link>
                         <Nav.Link href="/wallet">Wallet</Nav.Link>
                         <Nav.Link href="/staking">Staking</Nav.Link>

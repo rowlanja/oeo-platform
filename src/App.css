@@ -41,3 +41,7 @@
   height: 20px;
   width: 20px;
 }
+
+.navbar-light .navbar-nav .nav-link {
+  color: red;
+}
