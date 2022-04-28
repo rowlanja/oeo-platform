@@ -605,7 +605,7 @@ function Home() {
                                 px="0"
                                 title={
                                     <FallInPlace>
-                                        OneEyeOpen Console
+                                        OneEyeOpen Console 
                                     </FallInPlace>
                                 }
                                 description={
