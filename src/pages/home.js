@@ -1,7 +1,3 @@
-import React from 'react';
-
-import { CheckIcon } from '@chakra-ui/icons'
-
 
 import {
     FiBox,
@@ -23,19 +19,7 @@ import {
     FiTwitter,
     FiGithub,
 } from 'react-icons/fi'
-// import { FormDialog } from '@chakra-ui/react'
-import { Field } from '@saas-ui/forms'
-import { Card, CardBody } from '@saas-ui/card'
-
-import { Box, SimpleGrid } from '@chakra-ui/layout'
 import {
-    // Banner,
-    // BannerIcon,
-    // BannerContent,
-    // BannerTitle,
-    // BannerDescription,
-    // BannerActions,
-    // BannerCloseButton,
     Container,
     Heading,
     Text,
@@ -65,14 +49,17 @@ import {
     Wrap,
     Image,
 } from '@chakra-ui/react'
-
+import React from 'react';
+import { CheckIcon } from '@chakra-ui/icons'
 import { transparentize } from '@chakra-ui/theme-tools'
 import Hero from '../components/marketing/hero'
 import Features from '../components/marketing/features'
 import CTA from '../components/marketing/cta'
 import Section from '../components/marketing/section-wrapper'
 import SectionTitle from '../components/marketing/section-title'
-
+import { Field } from '@saas-ui/forms'
+import { Card, CardBody } from '@saas-ui/card'
+import { Box, SimpleGrid } from '@chakra-ui/layout'
 import SignupForm from '../components/signup-form/index'
 import { Em, Br } from '../components/typography'
 import { FallInPlace } from '../components/motion/fall-in-place'
@@ -80,7 +67,7 @@ import { ButtonLink } from '../components/link'
 import OneEyeOpenLogo from "../components/logos/Logo.png";
 import Pies from '../imgs/pies.png'
 import Network from '../imgs/R.png'
-
+import Crosschain from '../imgs/bc.png'
 
 // import { usePalette } from '@/providers/palette'
 // const [{ colors: palette, color: base, options }, setPalette] = usePalette()
@@ -109,6 +96,7 @@ const Pricing = () => {
 
                 <SimpleGrid columns={[1, null, 3]} spacing={4}>
                     <PricingBox
+                        borderColor="orange.500"
                         title="Index Crypto Investments"
                         description="Community Derived Diverse portfolios that maximise return."
                         price=""
@@ -134,7 +122,7 @@ const Pricing = () => {
                             </HStack>
                         }
                         description="Automated staking across a range of highly secure and highly lucrative pools."
-                        borderColor="primary.500"
+                        borderColor="orange.500"
                         boxShadow="md"
                     >
                         <PricingFeatures>
@@ -160,6 +148,7 @@ const Pricing = () => {
                             <HStack>
                             </HStack>
                         }
+                        borderColor="orange.500"
                         description=" Automated diverse participation in carefully selected ICO launchs"
                     >
                         <PricingFeatures>
@@ -323,7 +312,7 @@ const BoilerplateCode = () => {
             />
         </FormDialog> */}
                 </Box>
-                <img src={Pies} alt="this is car image" />
+                <img src={Pies} alt="" />
                 {/* <Box
                     color='orange.600'
                     display="flex"
@@ -345,9 +334,9 @@ const BoilerplateCode = () => {
 const Themable = () => {
     return (
         <Section innerWidth="container.xl" >
-            <Stack spacing="12" direction={['column', null, 'row']}>
+            <Stack spacing="20" direction={['column', null, 'row']}>
                 <Box>
-                    <img width={450} height={250}  src={Network} alt="this is car image" />
+                    <img width={300} height={250}  src={Network} alt="this is car image" />
                 </Box>
                 <Box py="10" flex="1"  >
                     <Heading size="2xl" mb="8" fontWeight="extrabold">
@@ -799,70 +788,8 @@ function Home() {
                         }
                     />
 
-                    <SimpleGrid
-                        columns={[2, null, 4]}
-                        columnGap={8}
-                        sx={{
-                            svg: {
-                                width: '80%',
-                                height: 'auto',
-                                maxHeight: '40px',
-                            },
-                        }}
-                    >
-                        <Link
-                            href="https://redwoodjs.com"
-                            p="8"
-                            h="100%"
-                            d="flex"
-                            sx={{
-                                path: {
-                                    fill: useColorModeValue('#000', '#fff'),
-                                },
-                            }}
-                        >
-                            {/* <RedwoodJS alt="RedwoodJS logo" /> */}
-                            <VisuallyHidden>RedwoodJS</VisuallyHidden>
-                        </Link>
+                <img src={Crosschain} alt="this is car image" />
 
-                        <Link
-                            href="https://nextjs.com"
-                            p="8"
-                            h="100%"
-                            d="flex"
-                            sx={{
-                                path: {
-                                    fill: useColorModeValue('#000', '#fff'),
-                                },
-                            }}
-                        >
-                            {/* <NextJS alt="Next.JS logo" /> */}
-                            <VisuallyHidden>Next.js</VisuallyHidden>
-                        </Link>
-
-                        <Link href="https://blitzjs.com" p="8" h="100%" d="flex">
-                            {/* <Blitz alt="Blitz.js logo" /> */}
-                            <VisuallyHidden>Blitz.js</VisuallyHidden>
-                        </Link>
-
-                        <Link
-                            href="https://supabase.com"
-                            p="8"
-                            h="100%"
-                            d="flex"
-                            sx={{
-                                'path.supabase_svg__wordmark': {
-                                    fill: useColorModeValue('#1F1F1F', '#FFF'),
-                                },
-                            }}
-                        >
-                            {/* <Supabase
-                alt="Supabase logo"
-                viewBox="0 0 581 113" // somehow this gets removed when importing
-                /> */}
-                            <VisuallyHidden>Supabase</VisuallyHidden>
-                        </Link>
-                    </SimpleGrid>
 
                     {/* <Text
             fontSize="sm"
