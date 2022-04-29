@@ -63,6 +63,7 @@ import {
     useTheme,
     Tag,
     Wrap,
+    Image,
 } from '@chakra-ui/react'
 
 import { transparentize } from '@chakra-ui/theme-tools'
@@ -77,6 +78,9 @@ import { Em, Br } from '../components/typography'
 import { FallInPlace } from '../components/motion/fall-in-place'
 import { ButtonLink } from '../components/link'
 import OneEyeOpenLogo from "../components/logos/Logo.png";
+import Pies from '../imgs/pies.png'
+import Network from '../imgs/R.png'
+
 
 // import { usePalette } from '@/providers/palette'
 // const [{ colors: palette, color: base, options }, setPalette] = usePalette()
@@ -90,6 +94,8 @@ import OneEyeOpenLogo from "../components/logos/Logo.png";
 //       }, 200),
 //     [setPalette]
 // )
+
+
 
 const Pricing = () => {
     return (
@@ -317,7 +323,8 @@ const BoilerplateCode = () => {
             />
         </FormDialog> */}
                 </Box>
-                <Box
+                <img src={Pies} alt="this is car image" />
+                {/* <Box
                     color='orange.600'
                     display="flex"
                     flex="1"
@@ -325,12 +332,11 @@ const BoilerplateCode = () => {
                     alignItems="center"
                     justifyContent="center"
                     bg="codeBackground"
-                    borderRadius="2xl"
-                >
-                    <Box width="90%" overflowX="auto">
+                    borderRadius="2xl" >
+                    <Box width="90%" overflowX="auto"> */}
                         {/* <CodePanel language="typescript">{codeExamples.form}</CodePanel> */}
-                    </Box>
-                </Box>
+                    {/* </Box>
+                </Box> */}
             </Stack>
         </Section>
     )
@@ -339,18 +345,21 @@ const BoilerplateCode = () => {
 const Themable = () => {
     return (
         <Section innerWidth="container.xl" >
-            <Box py="10" flex="1" width={['full', null, '50%']} >
-                <Heading size="2xl" mb="8" fontWeight="extrabold">
-                    Leverage Your Power.
-                </Heading>
-                <VStack spacing="4" alignItems="flex-start">
-                    <Text fontSize={['xl', null, '2xl']} color="muted">
-                        Through the OneEyeOpen Dao you can leverage your investment automatically for a say in new services, operations or decisions made on across the OneEyeOpen platform.
-                    </Text>
-                </VStack>
-            </Box>
-            <Stack spacing="12" direction={{ base: 'column', xl: 'row' }}>
-                <Box
+            <Stack spacing="12" direction={['column', null, 'row']}>
+                <Box>
+                    <img width={450} height={250}  src={Network} alt="this is car image" />
+                </Box>
+                <Box py="10" flex="1"  >
+                    <Heading size="2xl" mb="8" fontWeight="extrabold">
+                        Leverage Your Power.
+                    </Heading>
+                    <VStack spacing="4" alignItems="flex-start">
+                        <Text fontSize={['xl', null, '2xl']} color="muted">
+                            Through the OneEyeOpen Dao you can leverage your investment automatically for a say in new services, operations or decisions made on across the OneEyeOpen platform.
+                        </Text>
+                    </VStack>
+                </Box>
+                {/* <Box
                     display="flex"
                     flex="1"
                     alignItems="center"
@@ -364,27 +373,27 @@ const Themable = () => {
                             <Tab>Theme</Tab>
                         </TabList>
                         <TabPanels>
-                            <TabPanel>
+                            <TabPanel> */}
                                 {/* <CodePanel language="typescript" height="280px">
                 {codeExamples.styleProps}
                 </CodePanel> */}
-                            </TabPanel>
-                            <TabPanel>
+                            {/* </TabPanel>
+                            <TabPanel> */}
                                 {/* <CodePanel language="typescript" height="280px">
                 {codeExamples.theme}
                 </CodePanel> */}
-                            </TabPanel>
+                            {/* </TabPanel>
                         </TabPanels>
                     </Tabs>
-                </Box>
-                <Box
+                </Box> */}
+                {/* <Box
                     display="flex"
                     flex="1"
                     p={[0, null, 10]}
                     alignItems="center"
                     justifyContent="center"
                     borderRadius="2xl"
-                >
+                > */}
                     {/* <Banner
             display="flex"
             bg={useColorModeValue('white', 'gray.900')}
@@ -425,7 +434,7 @@ const Themable = () => {
             </BannerContent>
             <BannerCloseButton position="absolute" top="2" right="4" />
         </Banner> */}
-                </Box>
+                {/* </Box> */}
             </Stack>
         </Section>
     )
