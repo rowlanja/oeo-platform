@@ -1,4 +1,4 @@
-export const treasurer_address = "0x9b84CA5DD32FC629242152077fD99A1aE1A29818";
+export const treasurer_address = "0xa3fFF17ff6a495E88Ac41C8e7912F02c3359C106";
 
 export const treasurer_abi = [
 	{
