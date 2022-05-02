@@ -20,6 +20,8 @@ import {
     StackDivider,
     Center
   } from "@chakra-ui/react";
+  import { FallInPlace } from '../components/motion/fall-in-place'
+
   var fs = require('fs');
 
 const ProposalSummaryActiveCount = () => {
@@ -276,7 +278,8 @@ export default function Dao() {
           divider={<StackDivider borderColor='gray.200' />}
           spacing={4}
           margin='10px'
-        >
+        > 
+          <Center>
           <VStack
             divider={<StackDivider borderColor='gray.200' />}
             spacing={4}
@@ -284,16 +287,16 @@ export default function Dao() {
           >
             <Button onClick={govPostProposal} colorScheme='orange'>Post Proposal</Button>
             <Box>
-              <Text mb='8px'>Grant Amount: {setInputProposalGrantAmount}</Text>
+              <Text mb='8px'>Grant Amount: </Text>
               <Textarea
-                value={setInputProposalGrantAmount}
+                value={inputProposalGrantAmount}
                 onChange={handleSetInputProposalGrantAmount}
                 placeholder='Amount'
                 size='sm'
               />
             </Box>
             <Box>
-              <Text mb='8px'>Recipient Address: {inputProposalTeamAddress}</Text>
+              <Text mb='8px'>Recipient Address: </Text>
               <Textarea
                 value={inputProposalTeamAddress}
                 onChange={handleSetInputProposalTeamAddress}
@@ -309,8 +312,10 @@ export default function Dao() {
                 placeholder='Placeholder Title'
                 size='sm'
               />
+              <Text>Proposal Response : {proposalResponse}</Text>
             </Box>
-          </VStack>          
+          </VStack>         
+          </Center> 
           <Box p='6' align='stretch' >
               <Button onClick={govGetProposalVotes} colorScheme='orange'>Get Proposal Votes</Button>
               <Box display='flex' alignItems='baseline'>
@@ -357,25 +362,39 @@ export default function Dao() {
               </Box>
           </Box>
           <Box p='6' align='stretch' >
-              <Button onClick={govCastVote} colorScheme='orange'>castVote</Button>
-              <Box display='flex' alignItems='baseline'>
-                  <Box
-                      color='gray.500'
-                      fontWeight='semibold'
-                      letterSpacing='wide'
-                      fontSize='xs'
-                      textTransform='uppercase'
-                      ml='2'
-                  >
-                      {/* Name : {name}  */}
-                  </Box>
-              </Box>
+          {/* inputSetVotePropID,
+      inputSetCastVote, */}
+              <VStack
+                divider={<StackDivider borderColor='gray.200' />}
+                spacing={4}
+                align='stretch'
+              >
+                <Button onClick={govCastVote} colorScheme='orange'>castVote</Button>
+                <Box display='flex' alignItems='baseline'>
+                  <Text mb='8px'>Proposal ID: </Text>
+                  <Textarea
+                    value={inputSetVotePropID}
+                    onChange={handleSetInputProposalGrantAmount}
+                    placeholder='Amount'
+                    size='sm'
+                  />
+                </Box>
+                <Box display='flex' alignItems='baseline'>
+                  <Text mb='8px'>Votes to Cast: </Text>
+                  <Textarea
+                    value={inputSetCastVote}
+                    onChange={handleSetInputProposalGrantAmount}
+                    placeholder='Amount'
+                    size='sm'
+                  />
+                </Box>
+              </VStack>
           </Box>
       </HStack>
     )
   }
 
-
+  const [proposalResponse, setProposalResponse] = useState();
   const [tokenContract, setTokenContract] = useState(); // storage that the contract made
   const [governorContract, setGovernorContract] = useState(); // storage that the contract made
   const [treasurerContract, setTreasurerContract] = useState(); // storage that the contract made
@@ -462,6 +481,7 @@ export default function Dao() {
     ).send({ gas: '500000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
     console.log(transaction)
     console.log(transaction['events']['ProposalCreated']['returnValues']['proposalId'])
+    setProposalResponse(transaction['events']['ProposalCreated']['returnValues']['proposalId'])
   }
 
   const govGetProposalVotes = async () => {
@@ -547,6 +567,7 @@ export default function Dao() {
 
   return (
     <Stack>
+      <FallInPlace>
           <Section>
               <SectionTitle
                 title="OneEyeOpen Dao Console"
@@ -557,6 +578,7 @@ export default function Dao() {
                 }
             />
           </Section>
+      </FallInPlace>
         <VStack 
           divider={<StackDivider borderColor='gray.200' />}
           spacing={4}
@@ -564,7 +586,9 @@ export default function Dao() {
           margin='20px'
         >
           <Center p='6'>
-            <Header />
+            <FallInPlace>
+              <Header />
+            </FallInPlace>
           </Center>
           <Box p='6'>
             <TokenInteractionDashboard />
