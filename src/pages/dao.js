@@ -18,38 +18,101 @@ import {
     ButtonGroup,
     useColorModeValue,
     StackDivider,
-    Flex
+    Center
   } from "@chakra-ui/react";
   var fs = require('fs');
 
-const Box1 = () => {
+const ProposalSummaryActiveCount = () => {
   return(
-  <VStack
-  zIndex="2"
-  bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
-  borderRadius="md"
-  p="8"
-  flex="1 0"
-  alignItems="stretch"
-  border="1px solid"
-  borderColor={useColorModeValue('gray.400', 'gray.800')}        >
-  <Heading as="h3" size="md" fontWeight="bold" fontSize="lg" mb="2">
-      Total Value Locked : 
-  </Heading>
-  <Box color={useColorModeValue('gray.500', 'gray.400')}>
-    Current Proposals : 
-  </Box>
-  <Box fontSize="2xl" fontWeight="bold" py="4">
-      Participators : 
-  </Box>
-  <VStack align="stretch" justifyContent="stretch" spacing="4" flex="1">
-      
-  </VStack>
-</VStack>
+      <VStack
+        zIndex="2"
+        bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
+        borderRadius="md"
+        p="8"
+        flex="1 0"
+        alignItems="stretch"
+        border="1px solid"
+        borderColor={useColorModeValue('gray.400', 'gray.800')}        >
+      <Box color={useColorModeValue('gray.500', 'gray.400')}>
+        Number of Active Proposals : 5
+      </Box>
+    </VStack>
   );
 }
 
-  const PricingBox = ({ title, description, price, children, ...props }) => {
+const ProposalSummaryDeadCount = () => {
+  return(
+      <VStack
+        zIndex="2"
+        bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
+        borderRadius="md"
+        p="8"
+        flex="1 0"
+        alignItems="stretch"
+        border="1px solid"
+        borderColor={useColorModeValue('gray.400', 'gray.800')}        >
+      <Box color={useColorModeValue('gray.500', 'gray.400')}>
+        Number of Completed Proposals : 7
+      </Box>
+    </VStack>
+  );
+}
+
+const ProposalSummaryActiveVoters = () => {
+  return(
+      <VStack
+        zIndex="2"
+        bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
+        borderRadius="md"
+        p="8"
+        flex="1 0"
+        alignItems="stretch"
+        border="1px solid"
+        borderColor={useColorModeValue('gray.400', 'gray.800')}        >
+      <Box color={useColorModeValue('gray.500', 'gray.400')}>
+        Number of Active Voters : 3
+      </Box>
+    </VStack>
+  );
+}
+
+const ProposalSummaryTotalVotes = () => {
+  return(
+      <VStack
+        zIndex="2"
+        bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
+        borderRadius="md"
+        p="8"
+        flex="1 0"
+        alignItems="stretch"
+        border="1px solid"
+        borderColor={useColorModeValue('gray.400', 'gray.800')}        >
+      <Box color={useColorModeValue('gray.500', 'gray.400')}>
+        Number of Total Votes : 37212
+      </Box>
+    </VStack>
+  );
+}
+
+const ProposalSummaryFunds = () => {
+  return(
+      <VStack
+        zIndex="2"
+        bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
+        borderRadius="md"
+        p="8"
+        flex="1 0"
+        alignItems="stretch"
+        border="1px solid"
+        borderColor={useColorModeValue('gray.400', 'gray.800')}        >
+      <Box color={useColorModeValue('gray.500', 'gray.400')}>
+        Size of Transfered Funds : 32987
+      </Box>
+    </VStack>
+  );
+}
+
+const PricingBox = ({ title, description, price, children, ...props }) => {
     return (
         <VStack
             zIndex="2"
@@ -85,7 +148,9 @@ function Feature({ title, desc, ...rest }) {
   )
 }
 
-function Test(){
+
+
+function Header(){
   return(
     <Stack>
       <VStack
@@ -93,47 +158,194 @@ function Test(){
         spacing={4}
         align='stretch'
       >
-        <HStack margin='24px' spacing='24px'>
-          <Box >
-            <Box1 />
+        <HStack margin='0px' spacing='24px'>
+          <Box>
+            <ProposalSummaryActiveCount activeProposalsCount='5'/>
           </Box>
           <Box >
-          <Box1 />
+            <ProposalSummaryDeadCount activeProposalsCount='5'/>
+          </Box>
+          <Box>
+            <ProposalSummaryActiveVoters/>
+          </Box>  
+          <Box >
+            <ProposalSummaryTotalVotes/>
           </Box>
           <Box >
-          <Box1 />
-          </Box>
+            <ProposalSummaryFunds/>
+          </Box>            
         </HStack>
-        <HStack margin='24px' spacing='24px'>
-          <Box >
-            <Box1 />
-          </Box>
-          <Box >
-          <Box1 />
-          </Box>
-          <Box >
-          <Box1 />
-          </Box>
-        </HStack>
-        <HStack margin='24px' spacing='24px'>
-          <Box >
-            <Box1 />
-          </Box>
-          <Box >
-          <Box1 />
-          </Box>
-          <Box >
-          <Box1 />
-          </Box>
-        </HStack>
-        
       </VStack>
     </Stack>
   )
 }
 
 
+
 export default function Dao() {
+  function TokenInteractionDashboard(){
+    return(
+    <Box w="80%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
+      <Box p='6'>
+          <Button onClick={tokenDelegate} colorScheme='orange'>Token Delegate</Button>
+          <Box display='flex' alignItems='baseline'>
+              <Box
+                  color='gray.500'
+                  fontWeight='semibold'
+                  letterSpacing='wide'
+                  fontSize='xs'
+                  textTransform='uppercase'
+                  ml='2'
+              >
+                  {/* Balance : {balance}  */}
+              </Box>
+          </Box>
+      </Box>
+      <Box p='6'>
+          <Button onClick={tokenGetName} colorScheme='orange'>Get Token Name</Button>
+          <Box display='flex' alignItems='baseline'>
+              <Box
+                  color='gray.500'
+                  fontWeight='semibold'
+                  letterSpacing='wide'
+                  fontSize='xs'
+                  textTransform='uppercase'
+                  ml='2'
+              >
+                  {/* Balance : {balance}  */}
+              </Box>
+          </Box>
+      </Box>
+      <Box p='6'>
+          <Button onClick={tokenGetVotes} colorScheme='orange'>Get Token Votes</Button>
+          <Box display='flex' alignItems='baseline'>
+              <Box
+                  color='gray.500'
+                  fontWeight='semibold'
+                  letterSpacing='wide'
+                  fontSize='xs'
+                  textTransform='uppercase'
+                  ml='2'
+              >
+                  {/* Balance : {balance}  */}
+              </Box>
+          </Box>
+      </Box>
+      <Box p='6'>
+          <Button onClick={tokenGetBalance} colorScheme='orange'>Get Token Balance</Button>
+          <Box display='flex' alignItems='baseline'>
+              <Box
+                  color='gray.500'
+                  fontWeight='semibold'
+                  letterSpacing='wide'
+                  fontSize='xs'
+                  textTransform='uppercase'
+                  ml='2'
+              >
+                  {/* Balance : {balance}  */}
+              </Box>
+          </Box>
+      </Box>
+      <Box p='6'>
+          <Button onClick={tokenMint} colorScheme='orange'>Mint Tokens</Button>
+          <Box display='flex' alignItems='baseline'>
+              <Box
+                  color='gray.500'
+                  fontWeight='semibold'
+                  letterSpacing='wide'
+                  fontSize='xs'
+                  textTransform='uppercase'
+                  ml='2'
+              >
+                  {/* Balance : {balance}  */}
+              </Box>
+          </Box>
+      </Box>
+    </Box>
+    );
+  }
+
+  function ProposalInteractionDashboard(){
+    return(
+      <Box w="80%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
+        <Box p='6'>
+            <Button onClick={govPostProposal} colorScheme='orange'>Post Proposal</Button>
+            <Box display='flex' alignItems='baseline'>
+                <Box
+                    color='gray.500'
+                    fontWeight='semibold'
+                    letterSpacing='wide'
+                    fontSize='xs'
+                    textTransform='uppercase'
+                    ml='2'
+                >
+                    {/* Name : {name}  */}
+                </Box>
+            </Box>
+        </Box>
+        <Box p='6'>
+            <Button onClick={govGetProposalVotes} colorScheme='orange'>Get Proposal Votes</Button>
+            <Box display='flex' alignItems='baseline'>
+                <Box
+                    color='gray.500'
+                    fontWeight='semibold'
+                    letterSpacing='wide'
+                    fontSize='xs'
+                    textTransform='uppercase'
+                    ml='2'
+                >
+                    {/* Name : {name}  */}
+                </Box>
+            </Box>
+        </Box>
+        <Box p='6'>
+            <Button onClick={govSetVotingDelay} colorScheme='orange'>setVotingDelay</Button>
+            <Box display='flex' alignItems='baseline'>
+                <Box
+                    color='gray.500'
+                    fontWeight='semibold'
+                    letterSpacing='wide'
+                    fontSize='xs'
+                    textTransform='uppercase'
+                    ml='2'
+                >
+                    {/* Name : {name}  */}
+                </Box>
+            </Box>
+        </Box>
+        <Box p='6'>
+            <Button onClick={govSetVotingPeriod} colorScheme='orange'>setVotingPeriod</Button>
+            <Box display='flex' alignItems='baseline'>
+                <Box
+                    color='gray.500'
+                    fontWeight='semibold'
+                    letterSpacing='wide'
+                    fontSize='xs'
+                    textTransform='uppercase'
+                    ml='2'
+                >
+                    {/* Name : {name}  */}
+                </Box>
+            </Box>
+        </Box>
+        <Box p='6'>
+            <Button onClick={govCastVote} colorScheme='orange'>castVote</Button>
+            <Box display='flex' alignItems='baseline'>
+                <Box
+                    color='gray.500'
+                    fontWeight='semibold'
+                    letterSpacing='wide'
+                    fontSize='xs'
+                    textTransform='uppercase'
+                    ml='2'
+                >
+                    {/* Name : {name}  */}
+                </Box>
+            </Box>
+        </Box>
+      </Box>
+    )
+  }
 
 
   const [tokenContract, setTokenContract] = useState(); // storage that the contract made
@@ -293,43 +505,6 @@ export default function Dao() {
 
   return (
     <Stack>
-        <HStack marginBottom="10px">
-          {/* <Text
-            margin="0"
-            lineHeight="1.15"
-            fontSize={["1.5em", "2em", "3em", "4em"]}
-            fontWeight="600"
-            sx={{
-              background: "linear-gradient(90deg, #A90608 0%, #000000 70.35%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent"
-            }}
-            color='#5C0708'
-          > One </Text>
-          <Text
-            margin="0"
-            lineHeight="1.15"
-            fontSize={["1.5em", "2em", "3em", "4em"]}
-            fontWeight="600"
-          > Eye </Text>
-          <Text
-            margin="0"
-            lineHeight="1.15"
-            fontSize={["1.5em", "2em", "3em", "4em"]}
-            fontWeight="600"
-            sx={{
-              background: "linear-gradient(90deg, #000000 0%, #A90608 70.35%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent"
-            }}
-            color='#5C0708'
-          > Open </Text>
-        <Text
-            margin="0"
-            lineHeight="1.15"
-            fontSize={["1.5em", "2em", "3em", "4em"]}
-            fontWeight="600"
-          > Dao </Text> */}
           <Section>
               <SectionTitle
                 title="OneEyeOpen Dao Console"
@@ -339,217 +514,24 @@ export default function Dao() {
                     </>
                 }
             />
-            </Section>
-        </HStack>
-        <br/><br/>
-        <Flex>
-        <Box w="20%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
-            <Box p='6'>
-                <Button onClick={tokenDelegate} colorScheme='orange'>Token Delegate</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        {/* Balance : {balance}  */}
-                    </Box>
-                </Box>
-            </Box>
-            <Box p='6'>
-                <Button onClick={tokenGetName} colorScheme='orange'>Get Token Name</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        {/* Balance : {balance}  */}
-                    </Box>
-                </Box>
-            </Box>
-            <Box p='6'>
-                <Button onClick={tokenGetVotes} colorScheme='orange'>Get Token Votes</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        {/* Balance : {balance}  */}
-                    </Box>
-                </Box>
-            </Box>
-            <Box p='6'>
-                <Button onClick={tokenGetBalance} colorScheme='orange'>Get Token Balance</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        {/* Balance : {balance}  */}
-                    </Box>
-                </Box>
-            </Box>
-            <Box p='6'>
-                <Button onClick={tokenMint} colorScheme='orange'>Mint Tokens</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        {/* Balance : {balance}  */}
-                    </Box>
-                </Box>
-            </Box>
-            </Box>
-            <Box w="20%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
-            <Box p='6'>
-                <Button onClick={govPostProposal} colorScheme='orange'>Post Proposal</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        {/* Name : {name}  */}
-                    </Box>
-                </Box>
-            </Box>
-            <Box p='6'>
-                <Button onClick={govGetProposalVotes} colorScheme='orange'>Get Proposal Votes</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        {/* Name : {name}  */}
-                    </Box>
-                </Box>
-            </Box>
-            <Box p='6'>
-                <Button onClick={govSetVotingDelay} colorScheme='orange'>setVotingDelay</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        {/* Name : {name}  */}
-                    </Box>
-                </Box>
-            </Box>
-            <Box p='6'>
-                <Button onClick={govSetVotingPeriod} colorScheme='orange'>setVotingPeriod</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        {/* Name : {name}  */}
-                    </Box>
-                </Box>
-            </Box>
-            <Box p='6'>
-                <Button onClick={govCastVote} colorScheme='orange'>castVote</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        {/* Name : {name}  */}
-                    </Box>
-                </Box>
-            </Box>
-        </Box>
-        <Test />
-        </ Flex>
-                {/* <Feature
-                title='Name'
-                desc={name}
-                />
-                <Feature
-                title='Balance'
-                desc={balance}
-                /> */}
-        
-        <br/><br/>
-
-        <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-            {/* <Box p='6'>
-                <Button  colorScheme='orange'>Mint</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        Test ABI Post Mint
-                    </Box>
-                </Box>
-            </Box>
-            <Box p='6'>
-                <Button  colorScheme='borangelue'>Post</Button>
-                <Box display='flex' alignItems='baseline'>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        Test ABI Post Proposal
-                    </Box>
-                </Box>
-            </Box> */}
-                {/* <Feature
-                title='Name'
-                desc={name}
-                />
-                <Feature
-                title='Balance'
-                desc={balance}
-                /> */}
-        </Box>
+          </Section>
+        <VStack 
+          divider={<StackDivider borderColor='gray.200' />}
+          spacing={4}
+          align='stretch' 
+          margin='20px'
+        >
+          <Center p='6'>
+            <Header />
+          </Center>
+          <Box p='6'>
+            <TokenInteractionDashboard />
+          </Box>
+          <Box p='6'>
+            {/* <Box w="20%" borderWidth='1px' borderRadius='lg' overflow='hidden'> */}
+            <ProposalInteractionDashboard />
+          </Box>
+        </VStack> 
     </Stack>
   );
 }
