@@ -15,7 +15,7 @@ import {
     Box,
     Stack,
     Button, 
-    ButtonGroup,
+    Textarea,
     useColorModeValue,
     StackDivider,
     Center
@@ -159,19 +159,19 @@ function Header(){
         align='stretch'
       >
         <HStack margin='0px' spacing='24px'>
-          <Box>
+          <Box alignItems="stretch">
             <ProposalSummaryActiveCount activeProposalsCount='5'/>
           </Box>
-          <Box >
+          <Box alignItems="stretch">
             <ProposalSummaryDeadCount activeProposalsCount='5'/>
           </Box>
-          <Box>
+          <Box alignItems="stretch">
             <ProposalSummaryActiveVoters/>
           </Box>  
-          <Box >
+          <Box alignItems="stretch">
             <ProposalSummaryTotalVotes/>
           </Box>
-          <Box >
+          <Box alignItems="stretch">
             <ProposalSummaryFunds/>
           </Box>            
         </HStack>
@@ -190,6 +190,7 @@ export default function Dao() {
           <Button onClick={tokenDelegate} colorScheme='orange'>Token Delegate</Button>
           <Box display='flex' alignItems='baseline'>
               <Box
+                  p='2'
                   color='gray.500'
                   fontWeight='semibold'
                   letterSpacing='wide'
@@ -197,7 +198,7 @@ export default function Dao() {
                   textTransform='uppercase'
                   ml='2'
               >
-                  {/* Balance : {balance}  */}
+                  Balance : {outputTokenBalance} 
               </Box>
           </Box>
       </Box>
@@ -205,6 +206,7 @@ export default function Dao() {
           <Button onClick={tokenGetName} colorScheme='orange'>Get Token Name</Button>
           <Box display='flex' alignItems='baseline'>
               <Box
+                  p='2'
                   color='gray.500'
                   fontWeight='semibold'
                   letterSpacing='wide'
@@ -212,7 +214,7 @@ export default function Dao() {
                   textTransform='uppercase'
                   ml='2'
               >
-                  {/* Balance : {balance}  */}
+                  Token Name : {outputMintTokenName} 
               </Box>
           </Box>
       </Box>
@@ -220,6 +222,7 @@ export default function Dao() {
           <Button onClick={tokenGetVotes} colorScheme='orange'>Get Token Votes</Button>
           <Box display='flex' alignItems='baseline'>
               <Box
+                  p='2'
                   color='gray.500'
                   fontWeight='semibold'
                   letterSpacing='wide'
@@ -227,7 +230,7 @@ export default function Dao() {
                   textTransform='uppercase'
                   ml='2'
               >
-                  {/* Balance : {balance}  */}
+                  {/* Votes : 100  */}
               </Box>
           </Box>
       </Box>
@@ -235,6 +238,7 @@ export default function Dao() {
           <Button onClick={tokenGetBalance} colorScheme='orange'>Get Token Balance</Button>
           <Box display='flex' alignItems='baseline'>
               <Box
+                  p='2'
                   color='gray.500'
                   fontWeight='semibold'
                   letterSpacing='wide'
@@ -242,7 +246,7 @@ export default function Dao() {
                   textTransform='uppercase'
                   ml='2'
               >
-                  {/* Balance : {balance}  */}
+                  Balance : {outputTokenBalance} 
               </Box>
           </Box>
       </Box>
@@ -267,83 +271,107 @@ export default function Dao() {
 
   function ProposalInteractionDashboard(){
     return(
-      <Box w="80%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
-        <Box p='6'>
+      
+        <HStack
+          divider={<StackDivider borderColor='gray.200' />}
+          spacing={4}
+          margin='10px'
+        >
+          <VStack
+            divider={<StackDivider borderColor='gray.200' />}
+            spacing={4}
+            align='stretch'
+          >
             <Button onClick={govPostProposal} colorScheme='orange'>Post Proposal</Button>
-            <Box display='flex' alignItems='baseline'>
-                <Box
-                    color='gray.500'
-                    fontWeight='semibold'
-                    letterSpacing='wide'
-                    fontSize='xs'
-                    textTransform='uppercase'
-                    ml='2'
-                >
-                    {/* Name : {name}  */}
-                </Box>
+            <Box>
+              <Text mb='8px'>Grant Amount: {setInputProposalGrantAmount}</Text>
+              <Textarea
+                value={setInputProposalGrantAmount}
+                onChange={handleSetInputProposalGrantAmount}
+                placeholder='Amount'
+                size='sm'
+              />
             </Box>
-        </Box>
-        <Box p='6'>
-            <Button onClick={govGetProposalVotes} colorScheme='orange'>Get Proposal Votes</Button>
-            <Box display='flex' alignItems='baseline'>
-                <Box
-                    color='gray.500'
-                    fontWeight='semibold'
-                    letterSpacing='wide'
-                    fontSize='xs'
-                    textTransform='uppercase'
-                    ml='2'
-                >
-                    {/* Name : {name}  */}
-                </Box>
+            <Box>
+              <Text mb='8px'>Recipient Address: {inputProposalTeamAddress}</Text>
+              <Textarea
+                value={inputProposalTeamAddress}
+                onChange={handleSetInputProposalTeamAddress}
+                placeholder='Address'
+                size='sm'
+              />
             </Box>
-        </Box>
-        <Box p='6'>
-            <Button onClick={govSetVotingDelay} colorScheme='orange'>setVotingDelay</Button>
-            <Box display='flex' alignItems='baseline'>
-                <Box
-                    color='gray.500'
-                    fontWeight='semibold'
-                    letterSpacing='wide'
-                    fontSize='xs'
-                    textTransform='uppercase'
-                    ml='2'
-                >
-                    {/* Name : {name}  */}
-                </Box>
+            <Box>
+              <Text mb='8px'>Proposal Title: {inputProposalText}</Text>
+              <Textarea
+                value={inputProposalText}
+                onChange={handleSetInputProposalText}
+                placeholder='Placeholder Title'
+                size='sm'
+              />
             </Box>
-        </Box>
-        <Box p='6'>
-            <Button onClick={govSetVotingPeriod} colorScheme='orange'>setVotingPeriod</Button>
-            <Box display='flex' alignItems='baseline'>
-                <Box
-                    color='gray.500'
-                    fontWeight='semibold'
-                    letterSpacing='wide'
-                    fontSize='xs'
-                    textTransform='uppercase'
-                    ml='2'
-                >
-                    {/* Name : {name}  */}
-                </Box>
-            </Box>
-        </Box>
-        <Box p='6'>
-            <Button onClick={govCastVote} colorScheme='orange'>castVote</Button>
-            <Box display='flex' alignItems='baseline'>
-                <Box
-                    color='gray.500'
-                    fontWeight='semibold'
-                    letterSpacing='wide'
-                    fontSize='xs'
-                    textTransform='uppercase'
-                    ml='2'
-                >
-                    {/* Name : {name}  */}
-                </Box>
-            </Box>
-        </Box>
-      </Box>
+          </VStack>          
+          <Box p='6' align='stretch' >
+              <Button onClick={govGetProposalVotes} colorScheme='orange'>Get Proposal Votes</Button>
+              <Box display='flex' alignItems='baseline'>
+                  <Box
+                      color='gray.500'
+                      fontWeight='semibold'
+                      letterSpacing='wide'
+                      fontSize='xs'
+                      textTransform='uppercase'
+                      ml='2'
+                  >
+                      {/* Name : {name}  */}
+                  </Box>
+              </Box>
+          </Box>
+          <Box p='6' align='stretch' >
+              <Button onClick={govSetVotingDelay} colorScheme='orange'>setVotingDelay</Button>
+              <Box display='flex' alignItems='baseline'>
+                  <Box
+                      color='gray.500'
+                      fontWeight='semibold'
+                      letterSpacing='wide'
+                      fontSize='xs'
+                      textTransform='uppercase'
+                      ml='2'
+                  >
+                      {/* Name : {name}  */}
+                  </Box>
+              </Box>
+          </Box>
+          <Box p='6' align='stretch' >
+              <Button onClick={govSetVotingPeriod} colorScheme='orange'>setVotingPeriod</Button>
+              <Box display='flex' alignItems='baseline'>
+                  <Box
+                      color='gray.500'
+                      fontWeight='semibold'
+                      letterSpacing='wide'
+                      fontSize='xs'
+                      textTransform='uppercase'
+                      ml='2'
+                  >
+                      {/* Name : {name}  */}
+                  </Box>
+              </Box>
+          </Box>
+          <Box p='6' align='stretch' >
+              <Button onClick={govCastVote} colorScheme='orange'>castVote</Button>
+              <Box display='flex' alignItems='baseline'>
+                  <Box
+                      color='gray.500'
+                      fontWeight='semibold'
+                      letterSpacing='wide'
+                      fontSize='xs'
+                      textTransform='uppercase'
+                      ml='2'
+                  >
+                      {/* Name : {name}  */}
+                  </Box>
+              </Box>
+          </Box>
+      </HStack>
     )
   }
 
@@ -373,8 +401,9 @@ export default function Dao() {
   const [inputProposalTeamAddress, setInputProposalTeamAddress] = useState("0x90800f3Ac6957347c3f4BeC95Fd1CCccb1Cf91bE");
   const [inputProposalGrantAmount, setInputProposalGrantAmount] = useState(10000);
   const [inputProposalTransferCalldate, setInputProposalTransferCalldate] = useState();
-
   const [inputGetProposalVotesPropID, setInputGetProposalVotesPropID]  = useState("74486561760899968869385784074455550386604209723171923696131142196376942517660");
+  const [inputProposalText, setInputProposalText]  = useState("Prosal C: give grant to team");
+
 
   const [inputSetProposalMinVotingDelay, setInputSetProposalMinVotingDelay]  = useState(1000);
 
@@ -429,7 +458,7 @@ export default function Dao() {
       [token_address],
       [1],
       [transferCalldata],
-      "Prosal C: give grant to team",
+      inputProposalText,
     ).send({ gas: '500000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
     console.log(transaction)
     console.log(transaction['events']['ProposalCreated']['returnValues']['proposalId'])
@@ -473,7 +502,20 @@ export default function Dao() {
 
 
   //TREASURER OPERATIONS
+  let handleSetInputProposalGrantAmount = (e) => {
+    let inputValue = e.target.value
+    setInputProposalGrantAmount(inputValue)
+  }
 
+  let handleSetInputProposalTeamAddress = (e) => {
+    let inputValue = e.target.value
+    setInputProposalTeamAddress(inputValue)
+  }
+
+  let handleSetInputProposalText = (e) => {
+    let inputValue = e.target.value
+    setInputProposalText(inputValue)
+  }
     
   // AUXILIARY OPERATIONS
   const handleSaveToPC = jsonData => {
@@ -527,10 +569,10 @@ export default function Dao() {
           <Box p='6'>
             <TokenInteractionDashboard />
           </Box>
-          <Box p='6'>
+          <Center p='6'>
             {/* <Box w="20%" borderWidth='1px' borderRadius='lg' overflow='hidden'> */}
             <ProposalInteractionDashboard />
-          </Box>
+            </Center>
         </VStack> 
     </Stack>
   );
