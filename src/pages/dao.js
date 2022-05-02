@@ -134,13 +134,7 @@ function Test(){
 
 
 export default function Dao() {
-  
-  //----- Internal States -----
-  const [name, setName] = useState(); // My account
-  const [balance, setBalance] = useState(); // My account
 
-  const [account, setAccount] = useState(); // My account
-  const [storage, setStorage] = useState(); // simpleStorage
 
   const [tokenContract, setTokenContract] = useState(); // storage that the contract made
   const [governorContract, setGovernorContract] = useState(); // storage that the contract made
@@ -149,41 +143,65 @@ export default function Dao() {
   const [value, setValue] = useState(); // The value that stored in the Storage
   const [num, setNum] = useState(); // Inputed value
 
-  const [inputMintTokenAddress, setInputMintTokenAddress] = useState();
+  const [inputMintTokenAddress, setInputMintTokenAddress] = useState("0xCaCb6865142B31dEe0d85456dC030F8B6580B541");
+  const [inputMintTokenAmount, setInputMintTokenAmount] = useState(10000);
 
   const [outputMintTokenName, setOutputMintTokenName] = useState();
+
+  const [outputTokenBalance, setOutputTokenBalance] = useState();
   
+  const [outputTokenSymbol, setOutputTokenSymbol] = useState();
+
   const [inputTokenVotesAddress, setInputTokenVotesAddress] = useState();
+
+  const [inputTokenGetVotesAddress, setInputTokenGetVotesAddress] = useState("0xCaCb6865142B31dEe0d85456dC030F8B6580B541");
+
+  const [inputTokenDelegateAddress, setInputTokenDelegateAddress] = useState("0xCaCb6865142B31dEe0d85456dC030F8B6580B541");
+
+  const [inputProposalTeamAddress, setInputProposalTeamAddress] = useState("0x90800f3Ac6957347c3f4BeC95Fd1CCccb1Cf91bE");
+  const [inputProposalGrantAmount, setInputProposalGrantAmount] = useState(10000);
+  const [inputProposalTransferCalldate, setInputProposalTransferCalldate] = useState();
+
+  const [inputGetProposalVotesPropID, setInputGetProposalVotesPropID]  = useState("74486561760899968869385784074455550386604209723171923696131142196376942517660");
+
+  const [inputSetProposalMinVotingDelay, setInputSetProposalMinVotingDelay]  = useState(1000);
+
+  const [inputSetProposalVotingDelay, setInputSetProposalVotingDelay]  = useState(1);
+
+  const [inputSetProposalVotingPeriod, setInputSetProposalVotingPeriod]  = useState(1);
+
+  const [inputSetVotePropID, setInputSetVotePropID]  = useState("74486561760899968869385784074455550386604209723171923696131142196376942517660");
+  const [inputSetCastVote, setInputSetCastVote]  = useState(100);
 
   // Get Value From the Storage and Display on the Page
   //TOKEN OPERATIONS
   const tokenGetName = async () => {
     var val = await tokenContract.methods.name().call();
     console.log('got : ', val)
-    setName(val);
+    setOutputMintTokenName(val);
   }
   const tokenGetBalance = async () => {
     var val = await tokenContract.methods.balanceOf("0xCaCb6865142B31dEe0d85456dC030F8B6580B541").call();
     console.log('got : ', val)
-    setValue(val);
+    setOutputTokenBalance(val);
   }
 
   const tokenGetSymbol = async () => {
     var val = await tokenContract.methods.symbol().call();
     console.log('got : ', val)
-    setName(val);
+    setOutputTokenSymbol(val);
   }
 
   const tokenMint = async () => {
-    await tokenContract.methods.mint("0xCaCb6865142B31dEe0d85456dC030F8B6580B541", 1500000).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
+    await tokenContract.methods.mint(inputMintTokenAddress, inputMintTokenAmount).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
   }
 
   const tokenGetVotes = async () => {
-    await tokenContract.methods.getVotes("0xCaCb6865142B31dEe0d85456dC030F8B6580B541").send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
+    await tokenContract.methods.getVotes(inputTokenGetVotesAddress).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
   }
 
   const tokenDelegate = async () => {
-    await tokenContract.methods.delegate("0xCaCb6865142B31dEe0d85456dC030F8B6580B541").send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
+    await tokenContract.methods.delegate(inputTokenDelegateAddress).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
   }
   //GOVERNOR OPERATIONS
   const govPostProposal = async () => {
@@ -193,7 +211,7 @@ export default function Dao() {
 
     const teamAddress = '0x90800f3Ac6957347c3f4BeC95Fd1CCccb1Cf91bE';
     const grantAmount = 10;
-    const transferCalldata = token.interface.encodeFunctionData('transfer', [teamAddress, grantAmount]);
+    const transferCalldata = token.interface.encodeFunctionData('transfer', [inputProposalTeamAddress, grantAmount]);
 
     const transaction = await governorContract.methods.propose(
       [token_address],
@@ -207,36 +225,36 @@ export default function Dao() {
 
   const govGetProposalVotes = async () => {
     var val = await governorContract.methods.proposalVotes(
-      "74486561760899968869385784074455550386604209723171923696131142196376942517660"
+      inputGetProposalVotesPropID
     ).send({ gas: '500000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
     console.log('got : ', val)
   }
 
   const govGetMinDelay = async () => {
     var val = await governorContract.methods.getMinDelay(
-      1000
+      inputSetProposalMinVotingDelay
     ).send({ gas: '500000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
     console.log('got : ', val)
   }
 
   const govSetVotingDelay = async () => {
     var val = await governorContract.methods.setVotingDelay(
-      1
+      inputSetProposalVotingDelay
     ).send({ gas: '500000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
     console.log('got : ', val)
   }
 
   const govSetVotingPeriod = async () => {
     var val = await governorContract.methods.setVotingPeriod(
-      10000
+      inputSetProposalVotingPeriod
     ).send({ gas: '500000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
     console.log('got : ', val)
   }
 
   const govCastVote = async () => {
     var val = await governorContract.methods.castVote(
-      "74486561760899968869385784074455550386604209723171923696131142196376942517660",
-      100,
+      inputSetVotePropID,
+      inputSetCastVote,
     ).send({ gas: '500000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541"});
     console.log('got : ', val)
   }
@@ -263,8 +281,6 @@ export default function Dao() {
     async function load() {
       const web3 = new Web3(Web3.givenProvider || ' https://api.avax-test.network/ext/bc/C/rpc');
       const accounts = await web3.eth.requestAccounts();
-      setAccount(accounts[0]);
-      setStorage(new web3.eth.Contract(storage_abi, storage_address));
       setTokenContract(new web3.eth.Contract(token_abi, token_address));
       setGovernorContract(new web3.eth.Contract(governance_abi, governance_address));
       setTreasurerContract(new web3.eth.Contract(treasurer_abi, treasurer_address));
