@@ -273,7 +273,7 @@ export default function Dao() {
 
   function ProposalInteractionDashboard() {
     return (
-
+      <Box w="80%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
       <HStack
         divider={<StackDivider borderColor='gray.200' />}
         spacing={4}
@@ -418,6 +418,7 @@ export default function Dao() {
           </VStack>
         </Box>
       </HStack>
+      </Box>
     )
   }
 
@@ -627,7 +628,6 @@ let handleSetProposalID = (e) => { setInputProposalID(e.target.value) }
         </Section>
       </FallInPlace>
       <VStack
-        divider={<StackDivider borderColor='gray.200' />}
         spacing={4}
         align='stretch'
         margin='20px'
@@ -640,10 +640,10 @@ let handleSetProposalID = (e) => { setInputProposalID(e.target.value) }
         <Box p='6'>
           <TokenInteractionDashboard />
         </Box>
-        <Center p='6'>
+        <Box p='6'>
           {/* <Box w="20%" borderWidth='1px' borderRadius='lg' overflow='hidden'> */}
           <ProposalInteractionDashboard />
-        </Center>
+        </Box>
       </VStack>
     </Stack>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Web3 from 'web3';
 import { ethers } from "ethers";
 import {
   VStack,
@@ -10,6 +11,7 @@ import {
   Stack
 } from "@chakra-ui/react";
 import { CheckCircleIcon, WarningIcon } from "@chakra-ui/icons";
+import { token_address, token_abi } from "../contracts/VotingToken";
 
 export default function Wallet() {
   
@@ -17,6 +19,8 @@ export default function Wallet() {
     address: null,
     Balance: null,
   });
+
+  const [oeoBal, setOEOBal] = useState();
 
   const [active, setActive] = useState(false);
   
@@ -31,6 +35,15 @@ export default function Wallet() {
     setActive(true)
   };
 
+  const getOEObalance = async (address) => {
+    console.log('add : ', address)
+    const web3 = new Web3(Web3.givenProvider || ' https://api.avax-test.network/ext/bc/C/rpc');
+    var contract = new web3.eth.Contract(token_abi, token_address)
+    var tokenBalance = await contract.methods.balanceOf(address.toString()).call();
+    var tokenSymbol = await contract.methods.symbol().call();
+    setOEOBal(tokenBalance)
+  }
+
   const getbalance = (address) => {
     window.ethereum
       .request({
@@ -42,11 +55,15 @@ export default function Wallet() {
         setdata({
           address: address,
           Balance: ethers.utils.formatEther(balance),
-        });
-      });
+        })}).then((resp) => {
+          console.log(address)
+          getOEObalance(address)
+      })
   };
 
-  const accountChangeHandler = (account) => {getbalance(account);};
+  const accountChangeHandler = (account) => {
+    getbalance(account);
+  };
 
   function Feature({ title, desc, ...rest }) {
     return (
@@ -108,8 +125,12 @@ export default function Wallet() {
           desc={data.address}
         />
         <Feature
-          title='Balance'
+          title='Avax Balance : '
           desc={data.Balance}
+        />
+        <Feature
+          title='OEO Balance : '
+          desc={oeoBal}
         />
       </Stack>
 
