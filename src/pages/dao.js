@@ -300,51 +300,48 @@ export default function Dao() {
 
   function ProposalCreationDashboard() {
     return (
-      <Box w="80%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
-
+      <Box w="100%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
         <VStack
           divider={<StackDivider borderColor='gray.200' />}
           spacing={4}
-          align='stretch'
+          margin='10px'
         >
-          <Center>
             <Button onClick={govPostProposal} colorScheme='orange'>Post Proposal</Button>
-          </Center>
-          <HStack
-            divider={<StackDivider borderColor='gray.200' />}
-            spacing={4}
-            align='stretch'
-          >
+            <HStack
+              divider={<StackDivider borderColor='gray.200' />}
+              spacing={4}
+              align='stretch'
+            >
 
-            <Box>
-              <Text mb='8px'>Grant Amount: </Text>
-              <Textarea
-                value={inputProposalGrantAmount}
-                onChange={handleSetInputProposalGrantAmount}
-                placeholder='Amount'
-                size='sm'
-              />
-            </Box>
-            <Box>
-              <Text mb='8px'>Recipient Address: </Text>
-              <Textarea
-                value={inputProposalTeamAddress}
-                onChange={handleSetInputProposalTeamAddress}
-                placeholder='Address'
-                size='sm'
-              />
-            </Box>
-            <Box>
-              <Text mb='8px'>Proposal Title: {inputProposalText}</Text>
-              <Textarea
-                value={inputProposalText}
-                onChange={handleSetInputProposalText}
-                placeholder='Placeholder Title'
-                size='sm'
-              />
-              {/* <Text>Proposal Response : {proposalResponse}</Text> */}
-            </Box>
-          </HStack>
+              <Box>
+                <Text mb='8px'>Grant Amount: </Text>
+                <Textarea
+                  value={inputProposalGrantAmount}
+                  onChange={handleSetInputProposalGrantAmount}
+                  placeholder='Amount'
+                  size='sm'
+                />
+              </Box>
+              <Box>
+                <Text mb='8px'>Recipient Address: </Text>
+                <Textarea
+                  value={inputProposalTeamAddress}
+                  onChange={handleSetInputProposalTeamAddress}
+                  placeholder='Address'
+                  size='sm'
+                />
+              </Box>
+              <Box>
+                <Text mb='8px'>Proposal Title: {inputProposalText}</Text>
+                <Textarea
+                  value={inputProposalText}
+                  onChange={handleSetInputProposalText}
+                  placeholder='Placeholder Title'
+                  size='sm'
+                />
+                {/* <Text>Proposal Response : {proposalResponse}</Text> */}
+              </Box>
+            </HStack>
         </VStack>
       </Box>
     )
@@ -352,20 +349,16 @@ export default function Dao() {
 
   function ProposalInteractionDashboard() {
     return (
-      <Box w="80%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
-        <HStack
-          divider={<StackDivider borderColor='gray.200' />}
-          spacing={4}
-          margin='10px'
-        >
 
+      <VStack margin='10px' >
+        <Box w="100%" borderWidth='2px' borderRadius='lg' overflow='hidden'>
           <VStack
-            divider={<StackDivider borderColor='gray.200' />}
-            spacing={4}
-            align='stretch'
+              spacing={4}
+              margin='10px'
+              divider={<StackDivider borderColor='gray.200' />}
           >
             <Button onClick={govGetProposalVotes} colorScheme='orange'>Get Proposal Votes</Button>
-            <Box display='flex' alignItems='baseline'>
+            <Box display='flex' >
               <Text mb='8px'>Proposal ID : </Text>
               <Textarea
                 value={inputProposalID}
@@ -375,7 +368,8 @@ export default function Dao() {
               />
             </Box>
           </VStack>
-          <VStack
+        </Box>
+        {/* <VStack
             divider={<StackDivider borderColor='gray.200' />}
             spacing={4}
             align='stretch'
@@ -408,46 +402,50 @@ export default function Dao() {
                 />
               </Box>
             </VStack>
-          </Box>
-          <Box p='6' align='stretch' >
-            {/* inputSetVotePropID,
-      inputSetCastVote, */}
-            <VStack
+          </Box> */}
+        <Box w="100%" borderWidth='2px' borderRadius='lg' overflow='hidden'>
+          <VStack
+              spacing={4}
+              margin='10px'
+              divider={<StackDivider borderColor='gray.200' />}
+          >
+            <Button onClick={govCastVote} colorScheme='orange'>castVote</Button>
+            <HStack
               divider={<StackDivider borderColor='gray.200' />}
               spacing={4}
               align='stretch'
             >
-              <Button onClick={govCastVote} colorScheme='orange'>castVote</Button>
-              <Box display='flex' alignItems='baseline'>
-                <Text mb='8px'>Proposal ID: </Text>
-                <Textarea
-                  value={inputSetCastVoteProposalID}
-                  onChange={handleSetVoteProposalID}
-                  placeholder='Amount'
-                  size='sm'
-                />
-              </Box>
-              <Box display='flex' alignItems='baseline'>
-                <Text mb='8px'>Votes to Cast: </Text>
-                <Textarea
-                  value={inputSetCastVote}
-                  onChange={handleSetVote}
-                  placeholder='Amount'
-                  size='sm'
-                />
-              </Box>
-            </VStack>
-          </Box>
-          <Box p='6' align='stretch' >
-            {/* inputSetVotePropID,
-      inputSetCastVote, */}
-            <VStack
-              divider={<StackDivider borderColor='gray.200' />}
-              spacing={4}
-              align='stretch'
-            >
+            <Box >
+              <Text mb='8px'>Proposal ID: </Text>
+              <Textarea
+                value={inputSetCastVoteProposalID}
+                onChange={handleSetVoteProposalID}
+                placeholder='Amount'
+                size='sm'
+              />
+            </Box>
+            <Box >
+              <Text mb='8px'>Votes to Cast: </Text>
+              <Textarea
+                value={inputSetCastVote}
+                onChange={handleSetVote}
+                placeholder='Amount'
+                size='sm'
+              />
+            </Box>
+            </HStack>
+          </VStack>
+        </Box>
+        <Box w="100%" borderWidth='2px' borderRadius='lg' overflow='hidden'>
+
+        <VStack
+          divider={<StackDivider borderColor='gray.200' />}
+          spacing={4}
+          verticalAlign='top'
+          margin='10px' 
+        >    
               <Button onClick={govState} colorScheme='orange'>get Prop State</Button>
-              <Box display='flex' alignItems='baseline'>
+              <Box>
                 <Text mb='8px'>Proposal ID: </Text>
                 <Textarea
                   value={inputSetCastStateProposalID}
@@ -455,11 +453,10 @@ export default function Dao() {
                   placeholder='Amount'
                   size='sm'
                 />
-              </Box>
-            </VStack>
           </Box>
-        </HStack>
-      </Box>
+          </VStack>
+        </Box>
+      </VStack>
     )
   }
 
@@ -652,7 +649,7 @@ export default function Dao() {
     console.log(proposals)
     setProps(proposals)
   }
-  
+
   useEffect(() => {
     console.log(tokenContract)
     async function load() {
@@ -697,9 +694,11 @@ export default function Dao() {
         <Box p='6'>
           <HStack>
             <VStack>
+              <Box>
               <ProposalCreationDashboard />
               <ProposalInteractionDashboard />
               <TokenInteractionDashboard />
+              </Box>
             </VStack>
             <ProposolHistoryDashboard />
           </HStack>
