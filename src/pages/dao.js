@@ -18,7 +18,13 @@ import {
   Textarea,
   useColorModeValue,
   StackDivider,
-  Center
+  Center,
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  StatArrow,
+  StatGroup,
 } from "@chakra-ui/react";
 import { FallInPlace } from '../components/motion/fall-in-place'
 
@@ -36,7 +42,7 @@ const ProposalSummaryActiveCount = () => {
       border="1px solid"
       borderColor={useColorModeValue('gray.400', 'gray.800')}        >
       <Box color={useColorModeValue('gray.500', 'gray.400')}>
-        Number of Active Proposals : 5
+        Number of Active Proposals : --
       </Box>
     </VStack>
   );
@@ -54,7 +60,7 @@ const ProposalSummaryDeadCount = () => {
       border="1px solid"
       borderColor={useColorModeValue('gray.400', 'gray.800')}        >
       <Box color={useColorModeValue('gray.500', 'gray.400')}>
-        Number of Completed Proposals : 7
+        Number of Completed Proposals : --
       </Box>
     </VStack>
   );
@@ -72,7 +78,7 @@ const ProposalSummaryActiveVoters = () => {
       border="1px solid"
       borderColor={useColorModeValue('gray.400', 'gray.800')}        >
       <Box color={useColorModeValue('gray.500', 'gray.400')}>
-        Number of Active Voters : 3
+        Number of Active Voters : --
       </Box>
     </VStack>
   );
@@ -90,7 +96,7 @@ const ProposalSummaryTotalVotes = () => {
       border="1px solid"
       borderColor={useColorModeValue('gray.400', 'gray.800')}        >
       <Box color={useColorModeValue('gray.500', 'gray.400')}>
-        Number of Total Votes : 37212
+        Number of Total Votes : --
       </Box>
     </VStack>
   );
@@ -108,13 +114,13 @@ const ProposalSummaryFunds = () => {
       border="1px solid"
       borderColor={useColorModeValue('gray.400', 'gray.800')}        >
       <Box color={useColorModeValue('gray.500', 'gray.400')}>
-        Size of Transfered Funds : 32987
+        Size of Transfered Funds : --
       </Box>
     </VStack>
   );
 }
 
-const PricingBox = ({ title, description, price, children, ...props }) => {
+const ProposalBox = ({ title, description, address, ...props }) => {
   return (
     <VStack
       zIndex="2"
@@ -128,15 +134,11 @@ const PricingBox = ({ title, description, price, children, ...props }) => {
       {...props}
     >
       <Heading as="h3" size="md" fontWeight="bold" fontSize="lg" mb="2">
-        {title}
+        Proposal Title : {title}
       </Heading>
-      <Box color={useColorModeValue('gray.500', 'gray.400')}>{description}</Box>
-      <Box fontSize="2xl" fontWeight="bold" py="4">
-        {price}
-      </Box>
-      <VStack align="stretch" justifyContent="stretch" spacing="4" flex="1">
-        {children}
-      </VStack>
+      <Box color={useColorModeValue('gray.500', 'gray.400')}>ID : {description}</Box>
+      <Box color={useColorModeValue('gray.500', 'gray.400')}>Proposer : {address}</Box>
+
     </VStack>
   )
 }
@@ -271,22 +273,49 @@ export default function Dao() {
     );
   }
 
-  function ProposalInteractionDashboard() {
+  function ProposolHistoryDashboard() {
+
     return (
       <Box w="80%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
-      <HStack
-        divider={<StackDivider borderColor='gray.200' />}
-        spacing={4}
-        margin='10px'
-      >
-
-        <Center>
+        <Box p='6'>
           <VStack
+            divider={<StackDivider borderColor='gray.200' />}
+            spacing={4}
+            margin='10px'
+          >
+            <Button onClick={getProposals} colorScheme='orange'>Retrieve Proposals</Button>
+            {props.length != 0 ? props.map(proposal => (
+              <ProposalBox
+                title={proposal.returnValues.description}
+                description={proposal.returnValues.proposalId}
+                address={proposal.address}
+              />
+
+            )) : <div />}
+          </VStack>
+        </Box>
+      </Box>
+    );
+  }
+
+  function ProposalCreationDashboard() {
+    return (
+      <Box w="80%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
+
+        <VStack
+          divider={<StackDivider borderColor='gray.200' />}
+          spacing={4}
+          align='stretch'
+        >
+          <Center>
+            <Button onClick={govPostProposal} colorScheme='orange'>Post Proposal</Button>
+          </Center>
+          <HStack
             divider={<StackDivider borderColor='gray.200' />}
             spacing={4}
             align='stretch'
           >
-            <Button onClick={govPostProposal} colorScheme='orange'>Post Proposal</Button>
+
             <Box>
               <Text mb='8px'>Grant Amount: </Text>
               <Textarea
@@ -313,114 +342,131 @@ export default function Dao() {
                 placeholder='Placeholder Title'
                 size='sm'
               />
-              <Text>Proposal Response : {proposalResponse}</Text>
+              {/* <Text>Proposal Response : {proposalResponse}</Text> */}
             </Box>
-          </VStack>
-        </Center>
-
-        <VStack
-          divider={<StackDivider borderColor='gray.200' />}
-          spacing={4}
-          align='stretch'
-        >
-          <Button onClick={govGetProposalVotes} colorScheme='orange'>Get Proposal Votes</Button>
-          <Box display='flex' alignItems='baseline'>
-            <Text mb='8px'>Proposal ID : </Text>
-            <Textarea
-              value={inputProposalID}
-              onChange={handleSetProposalID}
-              placeholder='Amount'
-              size='sm'
-            />
-          </Box>
+          </HStack>
         </VStack>
-        <VStack
-          divider={<StackDivider borderColor='gray.200' />}
-          spacing={4}
-          align='stretch'
-        >
-          <Button onClick={govSetVotingDelay} colorScheme='orange'>setVotingDelay</Button>
-          <Box display='flex' alignItems='baseline'>
-            <Text mb='8px'>Voting Delay: </Text>
-            <Textarea
-              value={inputSetProposalVotingDelay}
-              onChange={handleSetInputProposalVotingDelay}
-              placeholder='Amount'
-              size='sm'
-            />
-          </Box>
-        </VStack>
-        <Box p='6' align='stretch' >
-          <VStack
-            divider={<StackDivider borderColor='gray.200' />}
-            spacing={4}
-            align='stretch'
-          >
-            <Button onClick={govSetVotingPeriod} colorScheme='orange'>setVotingPeriod</Button>
-            <Box display='flex' alignItems='baseline'>
-              <Text mb='8px'>Proposal Period: </Text>
-              <Textarea
-                value={inputSetProposalVotingPeriod}
-                onChange={handleSetInputProposalVotingPeriod}
-                placeholder='Amount'
-                size='sm'
-              />
-            </Box>
-          </VStack>
-        </Box>
-        <Box p='6' align='stretch' >
-          {/* inputSetVotePropID,
-      inputSetCastVote, */}
-          <VStack
-            divider={<StackDivider borderColor='gray.200' />}
-            spacing={4}
-            align='stretch'
-          >
-            <Button onClick={govCastVote} colorScheme='orange'>castVote</Button>
-            <Box display='flex' alignItems='baseline'>
-              <Text mb='8px'>Proposal ID: </Text>
-              <Textarea
-                value={inputSetCastVoteProposalID}
-                onChange={handleSetVoteProposalID}
-                placeholder='Amount'
-                size='sm'
-              />
-            </Box>
-            <Box display='flex' alignItems='baseline'>
-              <Text mb='8px'>Votes to Cast: </Text>
-              <Textarea
-                value={inputSetCastVote}
-                onChange={handleSetVote}
-                placeholder='Amount'
-                size='sm'
-              />
-            </Box>
-          </VStack>
-        </Box>
-        <Box p='6' align='stretch' >
-          {/* inputSetVotePropID,
-      inputSetCastVote, */}
-          <VStack
-            divider={<StackDivider borderColor='gray.200' />}
-            spacing={4}
-            align='stretch'
-          >
-            <Button onClick={govState} colorScheme='orange'>get Prop State</Button>
-            <Box display='flex' alignItems='baseline'>
-              <Text mb='8px'>Proposal ID: </Text>
-              <Textarea
-                value={inputSetCastStateProposalID}
-                onChange={handleSetStateProposalID}
-                placeholder='Amount'
-                size='sm'
-              />
-            </Box>
-          </VStack>
-        </Box>
-      </HStack>
       </Box>
     )
   }
+
+  function ProposalInteractionDashboard() {
+    return (
+      <Box w="80%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
+        <HStack
+          divider={<StackDivider borderColor='gray.200' />}
+          spacing={4}
+          margin='10px'
+        >
+
+          <VStack
+            divider={<StackDivider borderColor='gray.200' />}
+            spacing={4}
+            align='stretch'
+          >
+            <Button onClick={govGetProposalVotes} colorScheme='orange'>Get Proposal Votes</Button>
+            <Box display='flex' alignItems='baseline'>
+              <Text mb='8px'>Proposal ID : </Text>
+              <Textarea
+                value={inputProposalID}
+                onChange={handleSetProposalID}
+                placeholder='Amount'
+                size='sm'
+              />
+            </Box>
+          </VStack>
+          <VStack
+            divider={<StackDivider borderColor='gray.200' />}
+            spacing={4}
+            align='stretch'
+          >
+            <Button onClick={govSetVotingDelay} colorScheme='orange'>setVotingDelay</Button>
+            <Box display='flex' alignItems='baseline'>
+              <Text mb='8px'>Voting Delay: </Text>
+              <Textarea
+                value={inputSetProposalVotingDelay}
+                onChange={handleSetInputProposalVotingDelay}
+                placeholder='Amount'
+                size='sm'
+              />
+            </Box>
+          </VStack>
+          <Box p='6' align='stretch' >
+            <VStack
+              divider={<StackDivider borderColor='gray.200' />}
+              spacing={4}
+              align='stretch'
+            >
+              <Button onClick={govSetVotingPeriod} colorScheme='orange'>setVotingPeriod</Button>
+              <Box display='flex' alignItems='baseline'>
+                <Text mb='8px'>Proposal Period: </Text>
+                <Textarea
+                  value={inputSetProposalVotingPeriod}
+                  onChange={handleSetInputProposalVotingPeriod}
+                  placeholder='Amount'
+                  size='sm'
+                />
+              </Box>
+            </VStack>
+          </Box>
+          <Box p='6' align='stretch' >
+            {/* inputSetVotePropID,
+      inputSetCastVote, */}
+            <VStack
+              divider={<StackDivider borderColor='gray.200' />}
+              spacing={4}
+              align='stretch'
+            >
+              <Button onClick={govCastVote} colorScheme='orange'>castVote</Button>
+              <Box display='flex' alignItems='baseline'>
+                <Text mb='8px'>Proposal ID: </Text>
+                <Textarea
+                  value={inputSetCastVoteProposalID}
+                  onChange={handleSetVoteProposalID}
+                  placeholder='Amount'
+                  size='sm'
+                />
+              </Box>
+              <Box display='flex' alignItems='baseline'>
+                <Text mb='8px'>Votes to Cast: </Text>
+                <Textarea
+                  value={inputSetCastVote}
+                  onChange={handleSetVote}
+                  placeholder='Amount'
+                  size='sm'
+                />
+              </Box>
+            </VStack>
+          </Box>
+          <Box p='6' align='stretch' >
+            {/* inputSetVotePropID,
+      inputSetCastVote, */}
+            <VStack
+              divider={<StackDivider borderColor='gray.200' />}
+              spacing={4}
+              align='stretch'
+            >
+              <Button onClick={govState} colorScheme='orange'>get Prop State</Button>
+              <Box display='flex' alignItems='baseline'>
+                <Text mb='8px'>Proposal ID: </Text>
+                <Textarea
+                  value={inputSetCastStateProposalID}
+                  onChange={handleSetStateProposalID}
+                  placeholder='Amount'
+                  size='sm'
+                />
+              </Box>
+            </VStack>
+          </Box>
+        </HStack>
+      </Box>
+    )
+  }
+
+
+  const [currentBlock, setCurrentBlock] = useState(); // storage that the contract made
+
+  const [props, setProps] = useState([]); // Setting default value
 
   const [proposalResponse, setProposalResponse] = useState();
   const [tokenContract, setTokenContract] = useState(); // storage that the contract made
@@ -498,8 +544,8 @@ export default function Dao() {
   }
   //GOVERNOR OPERATIONS
 
-  
-  let handleSetInputProposalGrantAmount = (e) => {setInputProposalGrantAmount(e.target.value) }
+
+  let handleSetInputProposalGrantAmount = (e) => { setInputProposalGrantAmount(e.target.value) }
   let handleSetInputProposalTeamAddress = (e) => { setInputProposalTeamAddress(e.target.value) }
   let handleSetInputProposalText = (e) => { setInputProposalText(e.target.value) }
 
@@ -523,7 +569,7 @@ export default function Dao() {
     setProposalResponse(transaction['events']['ProposalCreated']['returnValues']['proposalId'])
   }
 
-let handleSetProposalID = (e) => { setInputProposalID(e.target.value) }
+  let handleSetProposalID = (e) => { setInputProposalID(e.target.value) }
 
   const govGetProposalVotes = async () => {
     var val = await governorContract.methods.proposalVotes(
@@ -572,7 +618,7 @@ let handleSetProposalID = (e) => { setInputProposalID(e.target.value) }
 
   let handleSetStateProposalID = (e) => { setInputSetCastStateProposalID(e.target.value) }
 
-  const govState= async () => {
+  const govState = async () => {
     console.log(inputSetCastStateProposalID)
     var val = await governorContract.methods.state(
       inputSetCastStateProposalID
@@ -580,33 +626,44 @@ let handleSetProposalID = (e) => { setInputProposalID(e.target.value) }
     console.log('got : ', val)
   }
 
-
   //TREASURER OPERATIONS
 
 
   // AUXILIARY OPERATIONS
 
-  const handleSaveToPC = jsonData => {
-    const fileData = JSON.stringify(jsonData);
-    const blob = new Blob([fileData], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.download = 'filename.json';
-    link.href = url;
-    link.click();
+  const getProposals = async () => {
+    var proposals = []
+    for (let i = 0; i < 15; i++) {
+      await governorContract.getPastEvents('ProposalCreated',
+        {
+          filter: { from: '0xCaCb6865142B31dEe0d85456dC030F8B6580B541' },
+          fromBlock: currentBlock - (2048 * (i + 1)),
+          toBlock: currentBlock - (2048 * i),
+        },
+        (err, events) => {
+          console.log()
+          if (events.length !== 0) {
+            events.forEach((item, index) => {
+              proposals.push(item)
+            });
+          }
+        });
+    };
+    console.log(proposals)
+    setProps(proposals)
   }
-
-
-
+  
   useEffect(() => {
     console.log(tokenContract)
     async function load() {
       const web3 = new Web3(Web3.givenProvider || ' https://api.avax-test.network/ext/bc/C/rpc');
       const accounts = await web3.eth.requestAccounts();
+      const blocknum = await web3.eth.getBlockNumber();
       setTokenContract(new web3.eth.Contract(token_abi, token_address));
       setGovernorContract(new web3.eth.Contract(governance_abi, governance_address));
       setTreasurerContract(new web3.eth.Contract(treasurer_abi, treasurer_address));
-      console.log(tokenContract)
+      setCurrentBlock(blocknum)
+      console.log(blocknum)
     }
     load();
 
@@ -638,11 +695,14 @@ let handleSetProposalID = (e) => { setInputProposalID(e.target.value) }
           </FallInPlace>
         </Center>
         <Box p='6'>
-          <TokenInteractionDashboard />
-        </Box>
-        <Box p='6'>
-          {/* <Box w="20%" borderWidth='1px' borderRadius='lg' overflow='hidden'> */}
-          <ProposalInteractionDashboard />
+          <HStack>
+            <VStack>
+              <ProposalCreationDashboard />
+              <ProposalInteractionDashboard />
+              <TokenInteractionDashboard />
+            </VStack>
+            <ProposolHistoryDashboard />
+          </HStack>
         </Box>
       </VStack>
     </Stack>
