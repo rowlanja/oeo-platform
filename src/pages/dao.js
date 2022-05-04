@@ -19,108 +19,18 @@ import {
   useColorModeValue,
   StackDivider,
   Center,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
-  StatGroup,
 } from "@chakra-ui/react";
+import {
+  ProposalSummaryActiveCount,
+  ProposalSummaryDeadCount,
+  ProposalSummaryActiveVoters,
+  ProposalSummaryTotalVotes,
+  ProposalSummaryFunds
+} from '../components/dao/summary/summary'
 import { FallInPlace } from '../components/motion/fall-in-place'
 
-var fs = require('fs');
 
-const ProposalSummaryActiveCount = () => {
-  return (
-    <VStack
-      zIndex="2"
-      bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
-      borderRadius="md"
-      p="8"
-      flex="1 0"
-      alignItems="stretch"
-      border="1px solid"
-      borderColor={useColorModeValue('gray.400', 'gray.800')}        >
-      <Box color={useColorModeValue('gray.500', 'gray.400')}>
-        Number of Active Proposals : --
-      </Box>
-    </VStack>
-  );
-}
-
-const ProposalSummaryDeadCount = () => {
-  return (
-    <VStack
-      zIndex="2"
-      bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
-      borderRadius="md"
-      p="8"
-      flex="1 0"
-      alignItems="stretch"
-      border="1px solid"
-      borderColor={useColorModeValue('gray.400', 'gray.800')}        >
-      <Box color={useColorModeValue('gray.500', 'gray.400')}>
-        Number of Completed Proposals : --
-      </Box>
-    </VStack>
-  );
-}
-
-const ProposalSummaryActiveVoters = () => {
-  return (
-    <VStack
-      zIndex="2"
-      bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
-      borderRadius="md"
-      p="8"
-      flex="1 0"
-      alignItems="stretch"
-      border="1px solid"
-      borderColor={useColorModeValue('gray.400', 'gray.800')}        >
-      <Box color={useColorModeValue('gray.500', 'gray.400')}>
-        Number of Active Voters : --
-      </Box>
-    </VStack>
-  );
-}
-
-const ProposalSummaryTotalVotes = () => {
-  return (
-    <VStack
-      zIndex="2"
-      bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
-      borderRadius="md"
-      p="8"
-      flex="1 0"
-      alignItems="stretch"
-      border="1px solid"
-      borderColor={useColorModeValue('gray.400', 'gray.800')}        >
-      <Box color={useColorModeValue('gray.500', 'gray.400')}>
-        Number of Total Votes : --
-      </Box>
-    </VStack>
-  );
-}
-
-const ProposalSummaryFunds = () => {
-  return (
-    <VStack
-      zIndex="2"
-      bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
-      borderRadius="md"
-      p="8"
-      flex="1 0"
-      alignItems="stretch"
-      border="1px solid"
-      borderColor={useColorModeValue('gray.400', 'gray.800')}        >
-      <Box color={useColorModeValue('gray.500', 'gray.400')}>
-        Size of Transfered Funds : --
-      </Box>
-    </VStack>
-  );
-}
-
-const ProposalBox = ({ title, description, address, ...props }) => {
+const ProposalContainer = ({ title, description, address, ...props }) => {
   return (
     <VStack
       zIndex="2"
@@ -142,17 +52,6 @@ const ProposalBox = ({ title, description, address, ...props }) => {
     </VStack>
   )
 }
-
-function Feature({ title, desc, ...rest }) {
-  return (
-    <Box p={5} shadow='md' borderWidth='1px' {...rest}>
-      <Heading fontSize='xl'>{title}</Heading>
-      <Text mt={4}>{desc}</Text>
-    </Box>
-  )
-}
-
-
 
 function Header() {
   return (
@@ -285,7 +184,7 @@ export default function Dao() {
           >
             <Button onClick={getProposals} colorScheme='orange'>Retrieve Proposals</Button>
             {props.length != 0 ? props.map(proposal => (
-              <ProposalBox
+              <ProposalContainer
                 title={proposal.returnValues.description}
                 description={proposal.returnValues.proposalId}
                 address={proposal.address}
