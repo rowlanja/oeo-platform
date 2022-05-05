@@ -4,6 +4,12 @@ import { ethers } from 'ethers'
 import { governance_abi, governance_address } from "../contracts/Governance";
 import { token_address, token_abi } from "../contracts/VotingToken";
 import { treasurer_abi, treasurer_address } from "../contracts/Treasurer";
+
+import { game_add, game_abi } from "../contracts/game";
+
+import { ico_abi, ico_address } from "../contracts/ico";
+import { icoCoin_abi, icoCoin_address } from "../contracts/ico-coin";
+
 import Section from '../components/marketing/section-wrapper'
 import SectionTitle from '../components/marketing/section-title'
 import {
@@ -85,6 +91,9 @@ export default function Ico() {
           <Center m='2'>
             <Button onClick={getTransactions} colorScheme='orange' align="stretch" size='lg' width='95%'>Mint Tokens</Button>
           </Center>
+          <Center m='2'>
+            <Button onClick={exchange} colorScheme='orange' align="stretch" size='lg' width='95%'>Test Game</Button>
+          </Center>
         </Box>
         </VStack>
       </Box>
@@ -94,6 +103,8 @@ export default function Ico() {
   const [transactions, setTransactions] = useState();
   const [currentBlock, setCurrentBlock] = useState(); // storage that the contract made
   const [tokenContract, setTokenContract] = useState(); // storage that the contract made
+  const [icoContract, setIcoContract] = useState(); // storage that the contract made
+  const [vendorContract, setVendorContract] = useState(); // storage that the contract made
 
   const [inputMintTokenAddress, setInputMintTokenAddress] = useState("0xCaCb6865142B31dEe0d85456dC030F8B6580B541");
   const [inputMintTokenAmount, setInputMintTokenAmount] = useState(10000);
@@ -122,6 +133,14 @@ export default function Ico() {
     console.log(proposals)
     setTransactions(proposals)
   }
+
+  const exchange = async () => {
+    var result = vendorContract.methods.buyTokens().send({
+      from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541",
+      value: "2",
+    });
+    console.log(result)
+  }
   //TOKEN CoONOPERATIONS
   const tokenGetBalance = async () => {
     var val = await tokenContract.methods.balanceOf("0xCaCb6865142B31dEe0d85456dC030F8B6580B541").call();
@@ -139,6 +158,7 @@ export default function Ico() {
       const web3 = new Web3(Web3.givenProvider || ' https://api.avax-test.network/ext/bc/C/rpc');
       const blocknum = await web3.eth.getBlockNumber();
       setTokenContract(new web3.eth.Contract(token_abi, token_address));
+      setVendorContract(new web3.eth.Contract(icoCoin_abi, icoCoin_address));
       setCurrentBlock(blocknum)
       console.log(blocknum)
     }
