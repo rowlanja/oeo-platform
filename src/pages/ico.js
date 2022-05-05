@@ -92,7 +92,7 @@ export default function Ico() {
             <Button onClick={getTransactions} colorScheme='orange' align="stretch" size='lg' width='95%'>Mint Tokens</Button>
           </Center>
           <Center m='2'>
-            <Button onClick={exchange} colorScheme='orange' align="stretch" size='lg' width='95%'>Test Game</Button>
+            <Button onClick={exchange} colorScheme='orange' align="stretch" size='lg' width='95%'>Buy Tokens for 2 AVAX</Button>
           </Center>
         </Box>
         </VStack>
