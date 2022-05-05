@@ -86,91 +86,6 @@ function Header() {
 
 
 export default function Dao() {
-  function TokenInteractionDashboard() {
-    return (
-      <Box w="80%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
-        <Box p='6'>
-          <Button onClick={tokenDelegate} colorScheme='orange'>Token Delegate</Button>
-          <Box display='flex' alignItems='baseline'>
-            <Box
-              p='2'
-              color='gray.500'
-              fontWeight='semibold'
-              letterSpacing='wide'
-              fontSize='xs'
-              textTransform='uppercase'
-              ml='2'
-            >
-              Balance : {outputTokenBalance}
-            </Box>
-          </Box>
-        </Box>
-        <Box p='6'>
-          <Button onClick={tokenGetName} colorScheme='orange'>Get Token Name</Button>
-          <Box display='flex' alignItems='baseline'>
-            <Box
-              p='2'
-              color='gray.500'
-              fontWeight='semibold'
-              letterSpacing='wide'
-              fontSize='xs'
-              textTransform='uppercase'
-              ml='2'
-            >
-              Token Name : {outputMintTokenName}
-            </Box>
-          </Box>
-        </Box>
-        <Box p='6'>
-          <Button onClick={tokenGetVotes} colorScheme='orange'>Get Token Votes</Button>
-          <Box display='flex' alignItems='baseline'>
-            <Box
-              p='2'
-              color='gray.500'
-              fontWeight='semibold'
-              letterSpacing='wide'
-              fontSize='xs'
-              textTransform='uppercase'
-              ml='2'
-            >
-              {/* Votes : 100  */}
-            </Box>
-          </Box>
-        </Box>
-        <Box p='6'>
-          <Button onClick={tokenGetBalance} colorScheme='orange'>Get Token Balance</Button>
-          <Box display='flex' alignItems='baseline'>
-            <Box
-              p='2'
-              color='gray.500'
-              fontWeight='semibold'
-              letterSpacing='wide'
-              fontSize='xs'
-              textTransform='uppercase'
-              ml='2'
-            >
-              Balance : {outputTokenBalance}
-            </Box>
-          </Box>
-        </Box>
-        <Box p='6'>
-          <Button onClick={tokenMint} colorScheme='orange'>Mint Tokens</Button>
-          <Box display='flex' alignItems='baseline'>
-            <Box
-              color='gray.500'
-              fontWeight='semibold'
-              letterSpacing='wide'
-              fontSize='xs'
-              textTransform='uppercase'
-              ml='2'
-            >
-              {/* Balance : {balance}  */}
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-    );
-  }
 
   function ProposolHistoryDashboard() {
 
@@ -374,13 +289,6 @@ export default function Dao() {
 
   const [inputMintTokenAddress, setInputMintTokenAddress] = useState("0xCaCb6865142B31dEe0d85456dC030F8B6580B541");
   const [inputMintTokenAmount, setInputMintTokenAmount] = useState(10000);
-
-  const [outputMintTokenName, setOutputMintTokenName] = useState();
-
-  const [outputTokenBalance, setOutputTokenBalance] = useState();
-
-  const [outputTokenSymbol, setOutputTokenSymbol] = useState();
-
   const [inputTokenVotesAddress, setInputTokenVotesAddress] = useState();
 
   const [inputTokenGetVotesAddress, setInputTokenGetVotesAddress] = useState("0xCaCb6865142B31dEe0d85456dC030F8B6580B541");
@@ -410,34 +318,7 @@ export default function Dao() {
 
   // Get Value From the Storage and Display on the Page
   //TOKEN OPERATIONS
-  const tokenGetName = async () => {
-    var val = await tokenContract.methods.name().call();
-    console.log('got : ', val)
-    setOutputMintTokenName(val);
-  }
-  const tokenGetBalance = async () => {
-    var val = await tokenContract.methods.balanceOf("0xCaCb6865142B31dEe0d85456dC030F8B6580B541").call();
-    console.log('got : ', val)
-    setOutputTokenBalance(val);
-  }
 
-  const tokenGetSymbol = async () => {
-    var val = await tokenContract.methods.symbol().call();
-    console.log('got : ', val)
-    setOutputTokenSymbol(val);
-  }
-
-  const tokenMint = async () => {
-    await tokenContract.methods.mint(inputMintTokenAddress, inputMintTokenAmount).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541" });
-  }
-
-  const tokenGetVotes = async () => {
-    await tokenContract.methods.getVotes(inputTokenGetVotesAddress).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541" });
-  }
-
-  const tokenDelegate = async () => {
-    await tokenContract.methods.delegate(inputTokenDelegateAddress).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541" });
-  }
   //GOVERNOR OPERATIONS
 
 
@@ -596,7 +477,6 @@ export default function Dao() {
               <Box>
               <ProposalCreationDashboard />
               <ProposalInteractionDashboard />
-              <TokenInteractionDashboard />
               </Box>
             </VStack>
             <ProposolHistoryDashboard />

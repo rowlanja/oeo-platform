@@ -10,6 +10,7 @@ import Dao from "../../pages/dao";
 import Home from "../../pages/home";
 import Wallet from "../../pages/wallet";
 import Staking from "../../pages/staking";
+import Ico from "../../pages/ico";
 import './nav.css'
 export default function NavType() {
 
@@ -32,8 +33,10 @@ export default function NavType() {
                     <Nav className="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <Nav.Link  className='nav-link' href="/">Home</Nav.Link>
                         <Nav.Link href="/dao">Dao</Nav.Link>
+                        <Nav.Link href="/ico">Ico</Nav.Link>
                         <Nav.Link href="/wallet">Wallet</Nav.Link>
                         <Nav.Link href="/staking">Staking</Nav.Link>
+
                     </Nav>
                 </Offcanvas.Body>
                 </Navbar.Offcanvas>
@@ -42,6 +45,7 @@ export default function NavType() {
             <Routes>
                 <Route path="/" element={<Home />}/>
                 <Route path="/dao" element={<Dao/>}/>
+                <Route path="/ico" element={<Ico/>}/>
                 <Route path="/wallet" element={<Wallet/>} />
                 <Route path="/staking" element={<Staking/>} />            
             </Routes>
