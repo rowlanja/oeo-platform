@@ -8,7 +8,7 @@ import { treasurer_abi, treasurer_address } from "../contracts/Treasurer";
 import { game_add, game_abi } from "../contracts/game";
 
 import { ico_abi, ico_address } from "../contracts/ico";
-import { icoCoin_abi, icoCoin_address } from "../contracts/ico-coin";
+import { icoToken_abi, icoToken_address } from "../contracts/ico_coin";
 
 import Section from '../components/marketing/section-wrapper'
 import SectionTitle from '../components/marketing/section-title'
@@ -105,6 +105,7 @@ export default function Ico() {
   const [tokenContract, setTokenContract] = useState(); // storage that the contract made
   const [icoContract, setIcoContract] = useState(); // storage that the contract made
   const [vendorContract, setVendorContract] = useState(); // storage that the contract made
+  const [icoCoinContract, setIcoCoinContract] = useState(); // storage that the contract made
 
   const [inputMintTokenAddress, setInputMintTokenAddress] = useState("0xCaCb6865142B31dEe0d85456dC030F8B6580B541");
   const [inputMintTokenAmount, setInputMintTokenAmount] = useState(10000);
@@ -135,11 +136,14 @@ export default function Ico() {
   }
 
   const exchange = async () => {
-    var result = vendorContract.methods.buyTokens().send({
+    
+    var avax_amount='2'
+    var wei_amount= Web3.utils.toWei(avax_amount, 'ether')
+    var approve = await tokenContract.methods.approve(ico_address, wei_amount).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541" });
+    var buy = vendorContract.methods.buyTokens().send({
       from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541",
-      value: "2",
+      value: wei_amount,
     });
-    console.log(result)
   }
   //TOKEN CoONOPERATIONS
   const tokenGetBalance = async () => {
@@ -158,7 +162,8 @@ export default function Ico() {
       const web3 = new Web3(Web3.givenProvider || ' https://api.avax-test.network/ext/bc/C/rpc');
       const blocknum = await web3.eth.getBlockNumber();
       setTokenContract(new web3.eth.Contract(token_abi, token_address));
-      setVendorContract(new web3.eth.Contract(icoCoin_abi, icoCoin_address));
+      setVendorContract(new web3.eth.Contract(ico_abi, ico_address));
+      setIcoCoinContract(new web3.eth.Contract(icoToken_abi, icoToken_address));
       setCurrentBlock(blocknum)
       console.log(blocknum)
     }
