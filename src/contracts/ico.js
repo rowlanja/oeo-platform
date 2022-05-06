@@ -159,4 +159,4 @@ export const ico_abi =[
 		"type": "function"
 	}
 ]
-export const ico_address = '0x36EfFDDb4Cd963c25FC2a324fa675E52bB6e377C'
+export const ico_address = '0x70ceD60A88683815DE647D42E9e0c8cf494d877A'

@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Web3 from 'web3';
-import { ethers } from 'ethers'
-import { governance_abi, governance_address } from "../contracts/Governance";
 import { token_address, token_abi } from "../contracts/VotingToken";
-import { treasurer_abi, treasurer_address } from "../contracts/Treasurer";
-
-import { game_add, game_abi } from "../contracts/game";
-
 import { ico_abi, ico_address } from "../contracts/ico";
 import { icoToken_abi, icoToken_address } from "../contracts/ico_coin";
 
-import Section from '../components/marketing/section-wrapper'
-import SectionTitle from '../components/marketing/section-title'
 import {
   VStack,
   Text,
@@ -21,15 +13,52 @@ import {
   Stack,
   Button,
   useColorModeValue,
-  StackDivider,
   Center,
   Progress,
 } from "@chakra-ui/react";
 
 import { FallInPlace } from '../components/motion/fall-in-place'
 
+const TokenInteractionDashboard = ({ exchange}) => {
+    return (
+    <Box w="40%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
+      <VStack
+        zIndex="2"
+        bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
+        borderRadius="md"
+        p="8"
+        flex="1 0"
+        alignItems="stretch"
+        border="2px solid"
+        borderColor={useColorModeValue('gray.400', 'gray.800')}
+      >
+      <Box p='2' >
+        <Center p='6'>
+          <Heading size="2xl" mb="6" fontWeight="extrabold">
+            Presale is now live
+          </Heading>
+        </Center>
+        <Box p='1'w='100%'>
+          <Text color="muted">
+            Current Bonus : 30%
+          </Text>
+          <Text color="muted">
+            Pre-Sale price 1 AVAX = 100 OEO
+          </Text>
+          <Progress value={20} size='lg' colorScheme='pink' />
+        </Box>
+      </Box>
+      <Box >
+        <Center m='2'>
+          <Button onClick={exchange} colorScheme='orange' align="stretch" size='lg' width='95%'>Buy Tokens for 2 AVAX</Button>
+        </Center>
+      </Box>
+      </VStack>
+    </Box>
+  );
+}
 
-const ProposalContainer = ({ title, description, address, ...props }) => {
+const ICOPurchaseContainer = ({ title, ethSpent, tokensRecieved, ...props }) => {
   return (
     <VStack
       zIndex="2"
@@ -43,69 +72,22 @@ const ProposalContainer = ({ title, description, address, ...props }) => {
       {...props}
     >
       <Heading as="h3" size="md" fontWeight="bold" fontSize="lg" mb="2">
-        Proposal Title : {title}
+        Buyer : {title}
       </Heading>
-      <Box color={useColorModeValue('gray.500', 'gray.400')}>ID : {description}</Box>
-      <Box color={useColorModeValue('gray.500', 'gray.400')}>Proposer : {address}</Box>
+      <Box color={useColorModeValue('gray.500', 'gray.400')}>ID : {ethSpent}</Box>
+      <Box color={useColorModeValue('gray.500', 'gray.400')}>Proposer : {tokensRecieved}</Box>
 
     </VStack>
   )
 }
 
-
-
 export default function Ico() {
-  function TokenInteractionDashboard() {
-    return (
-      <Box w="40%" borderWidth='1px' borderRadius='lg' overflow='hidden'>
-        <VStack
-          zIndex="2"
-          bg={useColorModeValue('whiteAlpha.600', 'blackAlpha.300')}
-          borderRadius="md"
-          p="8"
-          flex="1 0"
-          alignItems="stretch"
-          border="2px solid"
-          borderColor={useColorModeValue('gray.400', 'gray.800')}
-        >
-        <Box p='2' >
-          <Center p='6'>
-            <Heading size="2xl" mb="6" fontWeight="extrabold">
-              Presale is now live
-            </Heading>
-          </Center>
-          <Box p='1'w='100%'>
-            <Text color="muted">
-              Current Bonus : 30%
-            </Text>
-            <Text color="muted">
-              Pre-Sale price 1 AVAX = 850 OEO
-            </Text>
-            <Progress value={20} size='lg' colorScheme='pink' />
-          </Box>
-        </Box>
-        <Box >
-          <Center>
-            <Button onClick={tokenMint} colorScheme='orange' align="stretch" size='lg' width='95%'>Mint Tokens</Button>
-          </Center>
-          <Center m='2'>
-            <Button onClick={getTransactions} colorScheme='orange' align="stretch" size='lg' width='95%'>Mint Tokens</Button>
-          </Center>
-          <Center m='2'>
-            <Button onClick={exchange} colorScheme='orange' align="stretch" size='lg' width='95%'>Buy Tokens for 2 AVAX</Button>
-          </Center>
-        </Box>
-        </VStack>
-      </Box>
-    );
-  }
 
-  const [transactions, setTransactions] = useState();
+  const [purchases, setPurchases] = useState([]);
   const [currentBlock, setCurrentBlock] = useState(); // storage that the contract made
   const [tokenContract, setTokenContract] = useState(); // storage that the contract made
   const [icoContract, setIcoContract] = useState(); // storage that the contract made
   const [vendorContract, setVendorContract] = useState(); // storage that the contract made
-  const [icoCoinContract, setIcoCoinContract] = useState(); // storage that the contract made
 
   const [inputMintTokenAddress, setInputMintTokenAddress] = useState("0xCaCb6865142B31dEe0d85456dC030F8B6580B541");
   const [inputMintTokenAmount, setInputMintTokenAmount] = useState(10000);
@@ -116,7 +98,7 @@ export default function Ico() {
   const getTransactions = async () => {
     var proposals = []
     for (let i = 0; i < 15; i++) {
-      await tokenContract.getPastEvents('Transfer',
+      await vendorContract.getPastEvents('BuyTokens',
         {
           filter: { from: '0xCaCb6865142B31dEe0d85456dC030F8B6580B541' },
           fromBlock: currentBlock - (2048 * (i + 1)),
@@ -127,20 +109,21 @@ export default function Ico() {
           if (events.length !== 0) {
             events.forEach((item, index) => {
               proposals.push(item)
+              console.log(item.returnValues.amountOfETH)
+              console.log(item.returnValues.amountOfTokens)
             });
           }
         });
     };
     console.log(proposals)
-    setTransactions(proposals)
+    setPurchases(proposals)
   }
 
   const exchange = async () => {
-    
     var avax_amount='2'
     var wei_amount= Web3.utils.toWei(avax_amount, 'ether')
-    var approve = await tokenContract.methods.approve(ico_address, wei_amount).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541" });
-    var buy = vendorContract.methods.buyTokens().send({
+    await tokenContract.methods.approve(ico_address, wei_amount).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541" });
+    await vendorContract.methods.buyTokens().send({
       from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541",
       value: wei_amount,
     });
@@ -163,8 +146,8 @@ export default function Ico() {
       const blocknum = await web3.eth.getBlockNumber();
       setTokenContract(new web3.eth.Contract(token_abi, token_address));
       setVendorContract(new web3.eth.Contract(ico_abi, ico_address));
-      setIcoCoinContract(new web3.eth.Contract(icoToken_abi, icoToken_address));
       setCurrentBlock(blocknum)
+      getTransactions()
       console.log(blocknum)
     }
     load();
@@ -177,6 +160,7 @@ export default function Ico() {
       <FallInPlace>
 
       </FallInPlace>
+      <VStack>       
           <HStack>
               <Box w="50%" borderRadius='lg' overflow='hidden'>
                 <Stack spacing="20" direction={['column', null, 'row']}>
@@ -190,9 +174,17 @@ export default function Ico() {
                     </Box>
                 </Stack>
               </Box>
-            <TokenInteractionDashboard />
+            <TokenInteractionDashboard exchange={exchange}/>
             {/* <ProposolHistoryDashboard /> */}
           </HStack>
+          {purchases.length != 0 ? purchases.map(purchase => (
+              <ICOPurchaseContainer
+                title={purchase.address}
+                ethSpent={Web3.utils.fromWei(purchase.returnValues.amountOfETH, 'ether')}
+                tokensRecieved={Web3.utils.fromWei(purchase.returnValues.amountOfTokens, 'ether')}
+              />
+
+            )) : <div />}</VStack>
     </Stack>
   );
 }
