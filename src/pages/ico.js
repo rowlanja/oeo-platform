@@ -74,8 +74,8 @@ const ICOPurchaseContainer = ({ title, ethSpent, tokensRecieved, ...props }) => 
       <Heading as="h3" size="md" fontWeight="bold" fontSize="lg" mb="2">
         Buyer : {title}
       </Heading>
-      <Box color={useColorModeValue('gray.500', 'gray.400')}>ID : {ethSpent}</Box>
-      <Box color={useColorModeValue('gray.500', 'gray.400')}>Proposer : {tokensRecieved}</Box>
+      <Box color={useColorModeValue('gray.500', 'gray.400')}>AVAX Amount : {ethSpent}</Box>
+      <Box color={useColorModeValue('gray.500', 'gray.400')}>Token Amount : {tokensRecieved}</Box>
 
     </VStack>
   )
@@ -96,6 +96,7 @@ export default function Ico() {
   // Get Value From the Storage and Display on the Page
   //TOKEN EVENT OPERATIONS
   const getTransactions = async () => {
+    console.log(currentBlock)
     var proposals = []
     for (let i = 0; i < 15; i++) {
       await vendorContract.getPastEvents('BuyTokens',
@@ -138,21 +139,17 @@ export default function Ico() {
     await tokenContract.methods.mint(inputMintTokenAddress, 100000000000000000000).send({ gas: '1000000', from: "0xCaCb6865142B31dEe0d85456dC030F8B6580B541" });
   }
   //GOVERNOR OPERATIONS
+  const getBlockNum = async (web3) => {
+    setCurrentBlock(await web3.eth.getBlockNumber())
+  }
 
   useEffect(() => {
-    console.log(tokenContract)
-    async function load() {
-      const web3 = new Web3(Web3.givenProvider || ' https://api.avax-test.network/ext/bc/C/rpc');
-      const blocknum = await web3.eth.getBlockNumber();
-      setTokenContract(new web3.eth.Contract(token_abi, token_address));
-      setVendorContract(new web3.eth.Contract(ico_abi, ico_address));
-      setCurrentBlock(blocknum)
-      getTransactions()
-      console.log(blocknum)
-    }
-    load();
-
-  }, []);
+    const web3 = new Web3(Web3.givenProvider || ' https://api.avax-test.network/ext/bc/C/rpc');
+    getBlockNum(web3)
+    setTokenContract(new web3.eth.Contract(token_abi, token_address));
+    setVendorContract(new web3.eth.Contract(ico_abi, ico_address))
+    getTransactions()
+  }, [currentBlock]);
 
 
   return (
@@ -160,7 +157,9 @@ export default function Ico() {
       <FallInPlace>
 
       </FallInPlace>
-      <VStack>       
+      <VStack       
+        p="8">   
+        <Box p='8'>    
           <HStack>
               <Box w="50%" borderRadius='lg' overflow='hidden'>
                 <Stack spacing="20" direction={['column', null, 'row']}>
@@ -177,14 +176,17 @@ export default function Ico() {
             <TokenInteractionDashboard exchange={exchange}/>
             {/* <ProposolHistoryDashboard /> */}
           </HStack>
+        </Box>
           {purchases.length != 0 ? purchases.map(purchase => (
+            <Box p='2'>
               <ICOPurchaseContainer
                 title={purchase.address}
                 ethSpent={Web3.utils.fromWei(purchase.returnValues.amountOfETH, 'ether')}
                 tokensRecieved={Web3.utils.fromWei(purchase.returnValues.amountOfTokens, 'ether')}
               />
-
-            )) : <div />}</VStack>
+            </Box>
+            )) : <div />}
+      </VStack>
     </Stack>
   );
 }

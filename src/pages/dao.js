@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Web3 from 'web3';
 import { ethers } from 'ethers'
 import { governance_abi, governance_address } from "../contracts/Governance";
-import { storage_abi, storage_address } from "../contracts/storage";
 import { token_address, token_abi } from "../contracts/VotingToken";
 import { treasurer_abi, treasurer_address } from "../contracts/Treasurer";
 import Section from '../components/marketing/section-wrapper'
